@@ -9,12 +9,16 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
 
     PlayerEvents playerEvents;
+    TimeTickScript timeTick;
 
     // Start is called before the first frame update
     void Awake()
     {
         Instance = this;
-        playerEvents = new PlayerEvents();    }
+        playerEvents = new PlayerEvents();
+        timeTick = new TimeTickScript();
+        timeTick.Awake();
+    }
 
     void Start()
     {
@@ -29,5 +33,6 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         playerEvents.Update();
+        timeTick.Update();
     }
 }
