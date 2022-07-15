@@ -5,10 +5,6 @@ using UnityEngine;
 
 public class TimeTickScript
 {
-    public class OnTickEventArgs : EventArgs
-    {
-        public int tick;
-    }
     public static event EventHandler<OnTickEventArgs> OnTick;
 
     private const float TICK_TIMER_MAX = 2f;

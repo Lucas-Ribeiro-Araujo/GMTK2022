@@ -13,14 +13,14 @@ public class EnemySpawner : MonoBehaviour
         spawnerManager.OnTimerConclusion += SpawnEnemy;
     }
 
-    private void OnDisable()
+    /*private void OnDisable()
     {
         spawnerManager.OnTimerConclusion -= SpawnEnemy;
-    }
+    }*/
 
-    private void SpawnEnemy(object sender, EventArgs e)
+    private void SpawnEnemy(object sender, OnTickEventArgs e)
     {
-        Debug.Log("Space");
+
     }
 
 }

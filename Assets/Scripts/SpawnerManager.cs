@@ -7,16 +7,16 @@ public class SpawnerManager : MonoBehaviour
 {
     [SerializeField]
     public GameObject[] spawner;
-    public event EventHandler OnTimerConclusion;
+    public event EventHandler<OnTickEventArgs> OnTimerConclusion;
 
     private void Start()
     {
-        TimeTickScript.OnTick += delegate (object sender, TimeTickScript.OnTickEventArgs e)
+        
+        TimeTickScript.OnTick += delegate (object sender, OnTickEventArgs e)
         {
             Debug.Log("Tick: " + e.tick);
         };
     }
-
 
     // Update is called once per frame
     void Update()
@@ -24,7 +24,7 @@ public class SpawnerManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            OnTimerConclusion?.Invoke(this, EventArgs.Empty);
+            //OnTimerConclusion?.Invoke(this, );
         }
     }
 }
