@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
 
     public static GameManager Instance;
 
+    [SerializeField]
     PlayerEvents playerEvents;
     TimeTickScript timeTick;
 
@@ -15,9 +16,7 @@ public class GameManager : MonoBehaviour
     void Awake()
     {
         Instance = this;
-        playerEvents = new PlayerEvents();
-        timeTick = new TimeTickScript();
-        timeTick.Awake();
+        //timeTick.Awake();
     }
 
     void Start()
@@ -33,6 +32,6 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         playerEvents.Update();
-        timeTick.Update();
+        //timeTick.Update();
     }
 }
