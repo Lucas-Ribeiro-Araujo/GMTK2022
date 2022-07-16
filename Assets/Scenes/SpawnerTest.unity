@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1544,10 +1544,35 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7091320752666265037, guid: 61bd6c102cab1b0468e129087d4dc63d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7091320752666265037, guid: 61bd6c102cab1b0468e129087d4dc63d,
+        type: 3}
+      propertyPath: m_TagString
+      value: Table
+      objectReference: {fileID: 0}
     - target: {fileID: 7091320753668697923, guid: 61bd6c102cab1b0468e129087d4dc63d,
         type: 3}
       propertyPath: m_Name
       value: PlayTable
+      objectReference: {fileID: 0}
+    - target: {fileID: 7091320753668697923, guid: 61bd6c102cab1b0468e129087d4dc63d,
+        type: 3}
+      propertyPath: m_TagString
+      value: Wood
+      objectReference: {fileID: 0}
+    - target: {fileID: 7575826480491863927, guid: 61bd6c102cab1b0468e129087d4dc63d,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.1753
+      objectReference: {fileID: 0}
+    - target: {fileID: 7575826480491863927, guid: 61bd6c102cab1b0468e129087d4dc63d,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.0134
       objectReference: {fileID: 0}
     - target: {fileID: 7575826481745982969, guid: 61bd6c102cab1b0468e129087d4dc63d,
         type: 3}
