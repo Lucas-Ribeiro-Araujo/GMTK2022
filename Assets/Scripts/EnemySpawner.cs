@@ -1,28 +1,31 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
+    //public Transform spawnPosition;
+    public List<Wave> waves;
     public Transform spawnPosition;
-    public GameObject[] enemy;
-    
+
     private void Start()
     {
         
     }
-    
-    public void SpawnEnemy(object sender, OnTickEventArgs e)
+
+
+    public void SpawnWave(object sender, OnTickEventArgs e)
     {
-        //Spawn enemy on desired Tick
-        if (e.tick % 2 == 0)
+        foreach (Wave item in waves)
         {
-            Instantiate(enemy[0], spawnPosition.transform.position, spawnPosition.rotation);
-            GameManager.Instance.timeTick.OnTick -= SpawnEnemy;
-            GameManager.Instance.spawnerManager.hasSpawned = false;
+            if (item.spawnOnTick == e.tick)
+            {
+                StartCoroutine(item.SpawnEnemyCoroutine(spawnPosition));
+            }
         }
     }
+    
     void Update()
     {
-
         if (Input.GetKeyDown(KeyCode.Space))
         {
             //OnTick?.Invoke(this, );
@@ -31,3 +34,5 @@ public class EnemySpawner : MonoBehaviour
     }
 
 }
+
+

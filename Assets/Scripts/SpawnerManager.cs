@@ -4,25 +4,23 @@ using UnityEngine;
 public class SpawnerManager
 {
     public GameObject[] spawner;
-    int maxSpawnerQuantity;
     public bool hasSpawned;
     
 
     public void Start()
     {
-        maxSpawnerQuantity = spawner.Length;
         hasSpawned = false;
     }
 
-    private void SpawnEnemyOnSelectedSpawner()
+    private void SpawnEnemyOnSpawner()
     {
-        if (spawner.Length != 0)
+       
+        for (int i = 0; i < spawner.Length; i++)
         {
-            int spawnerRange = Random.Range(0, maxSpawnerQuantity);
-            GameManager.Instance.timeTick.OnTick += spawner[spawnerRange].GetComponent<EnemySpawner>().SpawnEnemy;
-            hasSpawned = true;
+            GameManager.Instance.timeTick.OnTick += spawner[i].GetComponent<EnemySpawner>().SpawnWave;
+            
         }
-
+        hasSpawned = true;
     }
 
     // Update is called once per frame
@@ -30,12 +28,7 @@ public class SpawnerManager
     {
         if (!hasSpawned)
         {
-            SpawnEnemyOnSelectedSpawner();
-        }
-
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            //OnTick?.Invoke(this, );
+            SpawnEnemyOnSpawner();
         }
     }
 }
