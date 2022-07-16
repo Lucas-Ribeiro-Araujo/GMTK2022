@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -48,6 +49,8 @@ public class Unit : MonoBehaviour
     [SerializeField]
     private float ragdolTimer;
     private Vector3 recoveryPoint;
+
+    public EventHandler<EventArgs> OnWalk;
 
     private void Start()
     {
@@ -189,6 +192,11 @@ public class Unit : MonoBehaviour
 
         Destroy(this.gameObject);
         yield break;
+    }
+
+    public void EmitWalkSound()
+    {
+        this.OnWalk?.Invoke(this, EventArgs.Empty);
     }
 }
 
