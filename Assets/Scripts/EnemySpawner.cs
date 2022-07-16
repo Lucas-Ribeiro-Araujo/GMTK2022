@@ -10,8 +10,8 @@ public class EnemySpawner : MonoBehaviour
 
     private void Start()
     {
-        GameManager.Instance.GetComponent<SpawnerManager>().OnTick += SpawnEnemy;
-        spawnPosition = GetComponentInChildren<Transform>().transform;
+        GameManager.Instance.spawnerManager.OnTick += SpawnEnemy;
+        //spawnPosition = GetComponentInChildren<Transform>().transform;
     }
     
     private void SpawnEnemy(object sender, OnTickEventArgs e)
