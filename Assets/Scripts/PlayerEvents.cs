@@ -27,7 +27,7 @@ public class PlayerEvents
         }
 
         throwTarget = CalculateThrowDirection();
-        directionArrow.position = throwTarget;
+       //directionArrow.position = throwTarget;
 
     }
 

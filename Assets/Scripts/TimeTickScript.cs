@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class TimeTickScript
 {
     public static event EventHandler<OnTickEventArgs> OnTick;
@@ -32,7 +33,6 @@ public class TimeTickScript
             tickTimer -= TICK_TIMER_MAX;
             tick++;
             OnTick?.Invoke(this, new OnTickEventArgs { tick = tick });
-            //Debug.Log(tick);
         }
     }
 }

@@ -3,13 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpawnerManager : MonoBehaviour
+[System.Serializable]
+public class SpawnerManager
 {
-    [SerializeField]
     public GameObject[] spawner;
-    public event EventHandler<OnTickEventArgs> OnTimerConclusion;
+    public event EventHandler<OnTickEventArgs> OnTick;
 
-    private void Start()
+    public void Start()
     {
         
         TimeTickScript.OnTick += delegate (object sender, OnTickEventArgs e)
@@ -19,12 +19,12 @@ public class SpawnerManager : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    public void Update()
     {
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            //OnTimerConclusion?.Invoke(this, );
+            //OnTick?.Invoke(this, );
         }
     }
 }

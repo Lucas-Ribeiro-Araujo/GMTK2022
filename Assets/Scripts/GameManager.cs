@@ -10,7 +10,10 @@ public class GameManager : MonoBehaviour
 
     [SerializeField]
     PlayerEvents playerEvents;
+    [SerializeField]
     TimeTickScript timeTick;
+    [SerializeField]
+    SpawnerManager spawnerManager;
 
     // Start is called before the first frame update
     void Awake()
@@ -21,7 +24,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        
+        spawnerManager.Start();
     }
     void OnDestroy()
     {
@@ -32,6 +35,7 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         playerEvents.Update();
-        //timeTick.Update();
+        timeTick.Update();
+        spawnerManager.Update();
     }
 }
