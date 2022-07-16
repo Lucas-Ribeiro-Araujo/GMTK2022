@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     public PlayerEvents playerEvents;
     [SerializeField]
-    public TimeTickScript timeTick;
+    public TimeTick timeTick;
     [SerializeField]
     public SpawnerManager spawnerManager;
 

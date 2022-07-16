@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 
 [System.Serializable]
-public class TimeTickScript
+public class TimeTick
 {
     public event EventHandler<OnTickEventArgs> OnTick;
 

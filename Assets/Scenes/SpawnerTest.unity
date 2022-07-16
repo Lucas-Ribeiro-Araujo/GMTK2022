@@ -588,7 +588,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f97e7bf91cc726d40b1d3a9b923bd68f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dice: {fileID: 4543887667825424200, guid: af053a4a8b0206f4c9bec87acc05928b, type: 3}
+  dices:
+  - {fileID: 4543887667825424200, guid: af053a4a8b0206f4c9bec87acc05928b, type: 3}
+  - {fileID: 248274891237030454, guid: d779cc10338876b499d9e6cc040921fc, type: 3}
 --- !u!4 &958623439
 Transform:
   m_ObjectHideFlags: 0
@@ -825,7 +827,12 @@ MonoBehaviour:
     tick: 0
     tickTimer: 0
   spawnerManager:
-    spawner: []
+    spawner:
+    - {fileID: 695688788}
+    - {fileID: 1110310583}
+    - {fileID: 266214062}
+    - {fileID: 1807569597}
+    - {fileID: 1991871790}
 --- !u!4 &1281345731
 Transform:
   m_ObjectHideFlags: 0
