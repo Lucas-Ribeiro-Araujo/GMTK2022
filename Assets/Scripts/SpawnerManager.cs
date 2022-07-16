@@ -5,12 +5,12 @@ using UnityEngine;
 public class SpawnerManager
 {
     public GameObject[] spawner;
-    public event EventHandler<OnTickEventArgs> OnTick;
+    
 
     public void Start()
     {
         
-        TimeTickScript.OnTick += delegate (object sender, OnTickEventArgs e)
+        GameManager.Instance.timeTick.OnTick += delegate (object sender, OnTickEventArgs e)
         {
             //Debug.Log("Tick: " + e.tick);
         };

@@ -5,20 +5,19 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    Transform spawnPosition;
+    public Transform spawnPosition;
     public GameObject[] enemy;
 
     private void Start()
     {
-        GameManager.Instance.spawnerManager.OnTick += SpawnEnemy;
-        //spawnPosition = GetComponentInChildren<Transform>().transform;
+        GameManager.Instance.timeTick.OnTick += SpawnEnemy;
     }
     
     private void SpawnEnemy(object sender, OnTickEventArgs e)
     {
         //Spawn enemy on desired Tick
-        //if (e.tick == 2)
-            Instantiate(enemy[0], spawnPosition);
+        if (e.tick % 2 == 0)
+            Instantiate(enemy[0], spawnPosition.transform.position, spawnPosition.rotation);
     }
     void Update()
     {
