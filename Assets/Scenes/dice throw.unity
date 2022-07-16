@@ -228,6 +228,7 @@ GameObject:
   m_Component:
   - component: {fileID: 958623439}
   - component: {fileID: 958623438}
+  - component: {fileID: 958623440}
   m_Layer: 0
   m_Name: DiceThrower
   m_TagString: Untagged
@@ -247,7 +248,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f97e7bf91cc726d40b1d3a9b923bd68f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dice: {fileID: 4543887667825424200, guid: af053a4a8b0206f4c9bec87acc05928b, type: 3}
+  dices:
+  - {fileID: 4543887667825424200, guid: af053a4a8b0206f4c9bec87acc05928b, type: 3}
+  - {fileID: 248274891237030454, guid: d779cc10338876b499d9e6cc040921fc, type: 3}
+  - {fileID: 8623700833702063413, guid: 149c6a09cd5b90f42b6b5734b15ab78b, type: 3}
+  throwDirection: {x: 0, y: 0, z: 0}
 --- !u!4 &958623439
 Transform:
   m_ObjectHideFlags: 0
@@ -263,6 +268,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &958623440
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 958623437}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: acf7ac730acef094baebb52e8bb00124, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  amountOfPoints: 20
+  lineLength: 40
+  pointMovePeriod: 1
 --- !u!1 &1281345729
 GameObject:
   m_ObjectHideFlags: 0
@@ -304,6 +324,7 @@ MonoBehaviour:
     tickTimer: 0
   spawnerManager:
     spawner: []
+    hasSpawned: 0
 --- !u!4 &1281345731
 Transform:
   m_ObjectHideFlags: 0
@@ -461,6 +482,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -8700617353114198275, guid: 4e913c682329662408c33964f439a8ee,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4e913c682329662408c33964f439a8ee,
         type: 3}
       propertyPath: m_RootOrder
@@ -536,6 +562,21 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -8162115279971634204, guid: 4e913c682329662408c33964f439a8ee,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -6803844034487920469, guid: 4e913c682329662408c33964f439a8ee,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 65702495048144492, guid: 4e913c682329662408c33964f439a8ee,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 65702495048144492, guid: 4e913c682329662408c33964f439a8ee,
         type: 3}
       propertyPath: m_TagString
@@ -545,6 +586,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: TestModels
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4e913c682329662408c33964f439a8ee,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5549534451636301561, guid: 4e913c682329662408c33964f439a8ee,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7649629042689777846, guid: 4e913c682329662408c33964f439a8ee,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9152363913774390056, guid: 4e913c682329662408c33964f439a8ee,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4e913c682329662408c33964f439a8ee, type: 3}

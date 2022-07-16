@@ -8,8 +8,9 @@ public class PlayerEvents
 {
 
     public event EventHandler<OnDiceThrowStartArgs> OnDiceThrowStart;
-    public event EventHandler<OnDiceThrowArgs> OnDiceThrow;
+    public event EventHandler<OnDiceThrowChargeArgs> OnDiceThrowCharge;
     public event EventHandler<OnDiceThrowTargetUpdateArgs> OnDiceThrowTargetUpdate;
+    public event EventHandler<OnDiceThrowArgs> OnDiceThrow;
 
     [HideInInspector]
     public Vector3 throwTarget;
@@ -53,11 +54,13 @@ public class PlayerEvents
 
         for (float heldTime = 0f; true; heldTime += Time.deltaTime)
         {
+            float power = Utils.Remap(heldTime, 0.2f, 3f, 10f, 30f);
+            power = Mathf.Clamp(power, 10, 30);
+
+            OnDiceThrowCharge?.Invoke(this, new OnDiceThrowChargeArgs { power = power });
+
             if (!Input.GetButton("Click"))
             {
-                float power = Utils.Remap(heldTime, 0.2f, 3f, 10f, 30f);
-                power = Mathf.Clamp(power, 10, 30);
-
                 OnDiceThrow?.Invoke(this, new OnDiceThrowArgs { power = power });
                 yield break;
             }

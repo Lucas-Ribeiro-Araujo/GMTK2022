@@ -8,7 +8,7 @@ public class DiceThrower : MonoBehaviour
     [SerializeField]
     List<GameObject> dices;
 
-    Vector3 throwDirection;
+    public Vector3 throwDirection;
 
     void Start()
     {

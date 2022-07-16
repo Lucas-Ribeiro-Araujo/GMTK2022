@@ -18,9 +18,12 @@ EditorUserSettings:
       value: 540504515c03505e0859557340705944404e19797f7975687d781c31e0b9676a
       flags: 0
     RecentlyUsedSceneGuid-4:
-      value: 01050c5651060808595e0d7646715e4417151e2b2d2e22347f7d1837b6e5366e
+      value: 0203025f0401515a5f5f557a49765e444e16197f297a7760747a4f30e1b4356b
       flags: 0
     RecentlyUsedSceneGuid-5:
+      value: 01050c5651060808595e0d7646715e4417151e2b2d2e22347f7d1837b6e5366e
+      flags: 0
+    RecentlyUsedSceneGuid-6:
       value: 565501045d57080e5c58552314740b44424e1a7c787876342b704537e4b2653e
       flags: 0
     UnityEditor.ShaderGraph.Blackboard:
@@ -31,9 +34,6 @@ EditorUserSettings:
       flags: 0
     UnityEditor.ShaderGraph.InspectorWindow:
       value: 18135939215a0a5004000b0e15254b524c1119263f2d6a722016393ce1eb3d36e5d339f9a560393d3511ea7046333e09f7181d02f50a06241708ee0b05bd4a435f95548717f73713d91006c1c309d0effad0d2f9ddffa5828f91f0beb6fdd1cbfceba0b9f0b3bed8e8f5ade7f78c978883d3f59e99959189eacfcc
-      flags: 0
-    RecentlyUsedSceneGuid-3:
-      value: 060304025c0c50025f5c5b70417b0f441016482e7e792464282f4465e3b93768
       flags: 0
     vcSharedLogLevel:
       value: 0d5e400f0650
