@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 [System.Serializable]
@@ -10,10 +9,7 @@ public class SpawnerManager
     public void Start()
     {
         
-        GameManager.Instance.timeTick.OnTick += delegate (object sender, OnTickEventArgs e)
-        {
-            //Debug.Log("Tick: " + e.tick);
-        };
+      
     }
 
     // Update is called once per frame
