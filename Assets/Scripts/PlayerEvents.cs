@@ -36,7 +36,10 @@ public class PlayerEvents
         }
 
         throwTarget = CalculateThrowTarget();
-        //directionArrow.LookAt(throwTarget);
+        if (directionArrow != null)
+        {
+            directionArrow.LookAt(throwTarget);
+        }
         OnDiceThrowTargetUpdate?.Invoke(this, new OnDiceThrowTargetUpdateArgs
         {
             targetPosition = throwTarget,
