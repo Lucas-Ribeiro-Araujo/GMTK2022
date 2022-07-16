@@ -6,7 +6,7 @@ public class DiceThrower : MonoBehaviour
 {
 
     [SerializeField]
-    GameObject dice;
+    List<GameObject> dices;
 
     Vector3 throwDirection;
 
@@ -37,9 +37,10 @@ public class DiceThrower : MonoBehaviour
 
     void SpawnDice(object sender, OnDiceThrowArgs args)
     {
-        Debug.Log(args.power);
-        if (dice != null)
+        if (dices.Count > 0)
         {
+            GameObject dice = dices[Random.Range(0, dices.Count)];
+
             GameObject createdDice = Instantiate(dice, transform.position, Quaternion.Euler(Random.Range(0.0f, 360.0f), Random.Range(0.0f, 360.0f), Random.Range(0.0f, 360.0f)));
 
             Rigidbody rgdb = createdDice.GetComponent<Rigidbody>();

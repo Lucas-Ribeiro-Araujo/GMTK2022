@@ -55,7 +55,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Diffuse:
-        m_Texture: {fileID: 2800000, guid: b28d46c2d931c494898df66cee5c8798, type: 3}
+        m_Texture: {fileID: 2800000, guid: 3d472dc45d674344492cad6ad13fbbd9, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _EmissionMap:
@@ -71,7 +71,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Normal:
-        m_Texture: {fileID: 2800000, guid: 007b83b256a45a84daff4b8f993277bf, type: 3}
+        m_Texture: {fileID: 2800000, guid: 6fe45b2efaa74f04b8ace5c45acab1cd, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
@@ -83,7 +83,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _RME:
-        m_Texture: {fileID: 2800000, guid: dfb9ff0cb053b9e4b8f2f905ac7b37b4, type: 3}
+        m_Texture: {fileID: 2800000, guid: 592ad95320cd2994f9a3ca07c7baf6dc, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SampleTexture2D_1cb04409d8c84bd08886febe54355e7d_Texture_1:
