@@ -12,7 +12,7 @@ public class SpawnerManager
         
         TimeTickScript.OnTick += delegate (object sender, OnTickEventArgs e)
         {
-            Debug.Log("Tick: " + e.tick);
+            //Debug.Log("Tick: " + e.tick);
         };
     }
 

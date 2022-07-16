@@ -37,6 +37,7 @@ public class DiceThrower : MonoBehaviour
 
     void SpawnDice(object sender, OnDiceThrowArgs args)
     {
+        Debug.Log(args.power);
         if (dice != null)
         {
             GameObject createdDice = Instantiate(dice, transform.position, Quaternion.Euler(Random.Range(0.0f, 360.0f), Random.Range(0.0f, 360.0f), Random.Range(0.0f, 360.0f)));
@@ -44,8 +45,8 @@ public class DiceThrower : MonoBehaviour
             Rigidbody rgdb = createdDice.GetComponent<Rigidbody>();
             if (!rgdb) return;
 
-            rgdb.velocity = throwDirection * Mathf.Clamp(args.power, 1f, 3f) * 10f;
-            float range = 3f;
+            rgdb.velocity = throwDirection * args.power;
+            float range = Mathf.PI * 2;
             rgdb.angularVelocity = new Vector3(Random.Range(-range, range), Random.Range(-range, range), Random.Range(-range, range));
         }
     }

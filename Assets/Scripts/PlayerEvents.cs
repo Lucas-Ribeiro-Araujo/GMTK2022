@@ -45,19 +45,17 @@ public class PlayerEvents
 
     }
 
-    IEnumerator DiceThrow()
-    {
-        float heldTime = 0f;
+    IEnumerator DiceThrow() {
         OnDiceThrowStart?.Invoke(this, new OnDiceThrowStartArgs { });
 
-        for (float time = 0f; true; time += Time.deltaTime)
+        for (float heldTime = 0f; true; heldTime += Time.deltaTime)
         {
-
-            heldTime = time;
-
             if (!Input.GetButton("Click"))
             {
-                OnDiceThrow?.Invoke(this, new OnDiceThrowArgs { power = heldTime });
+                float power = Utils.Remap(heldTime, 0.2f, 3f, 10f, 30f);
+                power = Mathf.Clamp(power, 10, 30);
+
+                OnDiceThrow?.Invoke(this, new OnDiceThrowArgs { power = power });
                 yield break;
             }
             yield return null;
