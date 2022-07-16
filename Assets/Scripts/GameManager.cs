@@ -8,17 +8,24 @@ public class GameManager : MonoBehaviour
 
     public static GameManager Instance;
 
-    PlayerEvents playerEvents;
+    [SerializeField]
+    public PlayerEvents playerEvents;
+    [SerializeField]
+    public TimeTickScript timeTick;
+    [SerializeField]
+    public SpawnerManager spawnerManager;
 
     // Start is called before the first frame update
     void Awake()
     {
         Instance = this;
-        playerEvents = new PlayerEvents();    }
+        //timeTick.Awake();
+    }
 
     void Start()
     {
-        
+        Cursor.lockState = CursorLockMode.Confined;
+        spawnerManager.Start();
     }
     void OnDestroy()
     {
@@ -29,5 +36,7 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         playerEvents.Update();
+        timeTick.Update();
+        spawnerManager.Update();
     }
 }
