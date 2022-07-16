@@ -16,6 +16,7 @@ public class Unit : MonoBehaviour
     [SerializeField]
     private UnitStates state;
 
+    [SerializeField]
     private float hp;
 
     private Quaternion previousRotation;
@@ -58,7 +59,7 @@ public class Unit : MonoBehaviour
 
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         switch (state)
         {
@@ -66,7 +67,7 @@ public class Unit : MonoBehaviour
                 {
                     if (unitRigidbody.velocity.magnitude < .01f && unitRigidbody.angularVelocity.magnitude < .01f)
                     {
-                        ragdolTimer += Time.deltaTime;
+                        ragdolTimer += Time.fixedDeltaTime;
                         if (ragdolTimer >= recoveryTimer)
                         {
                             ragdolTimer = 0;
@@ -142,7 +143,7 @@ public class Unit : MonoBehaviour
     {
         state = UnitStates.Moving;
         unitNavAgent.enabled = true;
-        unitRigidbody.isKinematic = false;
+        unitRigidbody.isKinematic = true;
         unitNavAgent.SetDestination(UnitTargetSingleton.Instance.transform.position);
         unitAnimator.SetBool("Moving", true);
     }
@@ -165,7 +166,7 @@ public class Unit : MonoBehaviour
         StartCoroutine(DieAfterTime(destroyDelay));
     }
 
-    public void TakeDamage(float damageToTake)
+    public void TakeDamage(float damageToTake, Knockback knockback)
     {
         hp -= damageToTake;
 
@@ -176,7 +177,9 @@ public class Unit : MonoBehaviour
         else
         {
             UnitRagdollState();
-            //Maybe we will need to add force
+            unitRigidbody.angularVelocity = Vector3.zero;
+            unitRigidbody.velocity = Vector3.zero;
+            unitRigidbody.AddForceAtPosition(knockback.force, knockback.origin);
         }
     }
 

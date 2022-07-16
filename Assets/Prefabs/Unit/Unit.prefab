@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7112700388908955966}
   m_Layer: 0
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: Unit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -113,7 +113,7 @@ GameObject:
   - component: {fileID: 7112700389111561123}
   m_Layer: 0
   m_Name: Unit
-  m_TagString: Untagged
+  m_TagString: Unit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -146,10 +146,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fd2451e12f005b48a876251908f372a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 9
+  moveSpeed: 2
   acceleration: 99
   maxHp: 100
   state: 2
+  hp: 0
   slerpTime: 0.01
   recoveryTimer: 2
   destroyDelay: 1

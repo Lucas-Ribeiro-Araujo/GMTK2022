@@ -15,32 +15,32 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 7ced5f2f1bc883f4ba12f40c99938ad7,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 50
+      value: 24
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7ced5f2f1bc883f4ba12f40c99938ad7,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 50
+      value: 24
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7ced5f2f1bc883f4ba12f40c99938ad7,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 50
+      value: 24
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7ced5f2f1bc883f4ba12f40c99938ad7,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.42842293
+      value: 1.096
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7ced5f2f1bc883f4ba12f40c99938ad7,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.432
+      value: -1.124
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7ced5f2f1bc883f4ba12f40c99938ad7,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 6.1908255
+      value: 6.49
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7ced5f2f1bc883f4ba12f40c99938ad7,
         type: 3}
@@ -135,6 +135,22 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -2907462421268956602, guid: 7ced5f2f1bc883f4ba12f40c99938ad7, type: 3}
+--- !u!208 &601268760501366769
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4543887667825424200}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 0
+  m_Extents: {x: 0.01, y: 0.008, z: 0.01}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: -0.003}
+  m_TimeToStationary: 0.5
 --- !u!114 &-1627425884530166420
 MonoBehaviour:
   m_ObjectHideFlags: 0

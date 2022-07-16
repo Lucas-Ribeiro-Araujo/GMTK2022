@@ -53,5 +53,20 @@ public class Dice : MonoBehaviour
 
             OnDiceCollision?.Invoke(this, args);
         }
+
+        if (collision.collider.tag == "Unit")
+        {
+            float impactPower = Vector3.Dot(collision.relativeVelocity, collision.contacts[0].normal);
+            Unit unit = collision.collider.GetComponentInParent<Unit>();
+
+            if (impactPower > 5)
+            {
+                Knockback knockback = new Knockback();
+                knockback.origin = collision.contacts[0].point;
+                knockback.force = collision.contacts[0].normal * -impactPower * 2f;
+                Debug.Log(impactPower);
+                unit.TakeDamage(Mathf.Max(impactPower, 0), knockback);
+            }
+        }
     }
 }

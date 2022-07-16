@@ -17,6 +17,7 @@ public class PlayerEvents
 
     [Range(1f, 20f)]
     public float aimIntersectionZPos = 10f;
+    public float minTargetHeight = 0f;
     public float heightGain = 3f;
     public Vector3 throwOrigin = Vector3.zero;
 
@@ -81,7 +82,7 @@ public class PlayerEvents
         if (intersectionPlane.Raycast(viewRay, out dist))
         {
             Vector3 target = viewRay.origin + viewRay.direction * dist;
-            target.y = Mathf.Max(0, target.y + heightGain);
+            target.y = Mathf.Max(minTargetHeight, target.y + heightGain);
             return target;
         }
 
