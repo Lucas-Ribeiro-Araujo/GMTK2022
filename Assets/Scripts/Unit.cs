@@ -90,6 +90,11 @@ public class Unit : MonoBehaviour
                     break;
                 }
         }
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            UnitRagdollState();
+        }
     }
 
     bool RotationEquals(Quaternion r1, Quaternion r2)
@@ -104,9 +109,8 @@ public class Unit : MonoBehaviour
     private void UnitRagdollState()
     {
         state = UnitStates.Ragdolling;
-        unitNavAgent.enabled = false;
         unitRigidbody.isKinematic = false;
-
+        unitNavAgent.enabled = false;
     }
 
     private void UnitGettingUpState()
