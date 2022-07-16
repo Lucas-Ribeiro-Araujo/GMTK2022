@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         Cursor.lockState = CursorLockMode.Confined;
+        playerEvents.Start();
         spawnerManager.Start();
     }
     void OnDestroy()

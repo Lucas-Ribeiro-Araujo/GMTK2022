@@ -6,11 +6,11 @@ using UnityEngine;
 [System.Serializable]
 public class TimeTickScript
 {
-    public static event EventHandler<OnTickEventArgs> OnTick;
+    public event EventHandler<OnTickEventArgs> OnTick;
 
-    private const float TICK_TIMER_MAX = 2f;
-    private int tick;
-    private float tickTimer;
+    public float TICK_TIMER_MAX = 2f;
+    public int tick;
+    public float tickTimer;
     // Start is called before the first frame update
 
     public void Awake()

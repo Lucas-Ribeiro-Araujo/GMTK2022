@@ -132,8 +132,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 272183366}
-  - component: {fileID: 272183367}
-  - component: {fileID: 272183368}
   - component: {fileID: 272183369}
   m_Layer: 0
   m_Name: GameManager
@@ -157,36 +155,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &272183367
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 272183365}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d8cd3dac107c054f841881fef0781bb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spawner:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
---- !u!114 &272183368
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 272183365}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 36a957c3da446a64eb597bd9b3397969, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &272183369
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -199,6 +167,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d86f31bb3d1d6d140bf4dea44c344029, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerEvents:
+    throwTarget: {x: 0, y: 0, z: 0}
+    aimIntersectionZPos: 10
+    heightGain: 3
+    throwOrigin: {x: 0, y: 0, z: 0}
+    directionArrow: {fileID: 0}
+  timeTick:
+    TICK_TIMER_MAX: 2
+    tick: 0
+    tickTimer: 0
+  spawnerManager:
+    spawner:
+    - {fileID: 2014659288}
 --- !u!1 &1279491812
 GameObject:
   m_ObjectHideFlags: 0
@@ -445,6 +426,37 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1757415193
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1757415194}
+  m_Layer: 0
+  m_Name: SpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1757415194
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1757415193}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.89}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2014659293}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1830958328
 GameObject:
   m_ObjectHideFlags: 0
@@ -572,8 +584,9 @@ GameObject:
   - component: {fileID: 2014659292}
   - component: {fileID: 2014659291}
   - component: {fileID: 2014659290}
+  - component: {fileID: 2014659294}
   m_Layer: 0
-  m_Name: Spawner1
+  m_Name: Spawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -650,10 +663,26 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2014659288}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.85, y: 1.12, z: -11.98}
+  m_LocalPosition: {x: 4.74, y: 1.12, z: -11.98}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1757415194}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2014659294
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2014659288}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36a957c3da446a64eb597bd9b3397969, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnPosition: {fileID: 1757415194}
+  enemy:
+  - {fileID: 4399178772657311523, guid: e3d921c740d09cd41844fe57af6ad4e4, type: 3}
