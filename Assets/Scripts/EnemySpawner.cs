@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    //public Transform spawnPosition;
     public List<Wave> waves;
     public Transform spawnPosition;
 

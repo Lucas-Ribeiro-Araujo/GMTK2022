@@ -4,12 +4,10 @@ using UnityEngine;
 public class SpawnerManager
 {
     public GameObject[] spawner;
-    public bool hasSpawned;
-    
 
     public void Start()
     {
-        hasSpawned = false;
+        SpawnEnemyOnSpawner();
     }
 
     private void SpawnEnemyOnSpawner()
@@ -20,15 +18,11 @@ public class SpawnerManager
             GameManager.Instance.timeTick.OnTick += spawner[i].GetComponent<EnemySpawner>().SpawnWave;
             
         }
-        hasSpawned = true;
     }
 
     // Update is called once per frame
     public void Update()
     {
-        if (!hasSpawned)
-        {
-            SpawnEnemyOnSpawner();
-        }
+        
     }
 }
