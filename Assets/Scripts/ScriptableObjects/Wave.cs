@@ -17,8 +17,6 @@ public class Wave : ScriptableObject
             Instantiate(Enemy[i], new Vector3(spawnPosition.position.x, spawnPosition.position.y, spawnPosition.position.z), spawnPosition.rotation);
             yield return new WaitForSeconds(intervalBeetweenSpawn);
         }
-        
-        //GameManager.Instance.spawnerManager.hasSpawned = false;
     }
     // Start is called before the first frame update
     void Start()
