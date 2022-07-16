@@ -8,13 +8,23 @@ public class DiceTrajectory : MonoBehaviour
     DiceThrower diceThrower;
 
     [SerializeField]
+    [Min(0)]
     int amountOfPoints = 20;
     [SerializeField]
+    [Min(0f)]
     float lineLength = 10f;
     [SerializeField]
+    [Min(0)]
     float pointMovePeriod = 1f;
 
+    [SerializeField]
+    GameObject dot;
+    [SerializeField]
+    [Min(0f)]
+    float dotSize = 10f;
+
     List<Vector3> linePoints = new List<Vector3>();
+    List<Transform> dots = new List<Transform>();
 
     // Start is called before the first frame update
     void Start()
@@ -27,33 +37,37 @@ public class DiceTrajectory : MonoBehaviour
         }
 
         GameManager.Instance.playerEvents.OnDiceThrowCharge += UpdateTrajectory;
+
+        for (int i = 0; i < amountOfPoints; i++)
+        {
+            SpawnLineDot();
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        
-    }
-
-    private void OnDrawGizmos()
-    {
-        List<Vector3> points = GetFinalTrajectoryPoints();
-        for (int i = 0; i < points.Count; i++)
+        if (dots.Count > amountOfPoints)
         {
-            Gizmos.color = Color.white;
-
-            float radius = 0.1f;
-
-            if (i == points.Count - 1)
+            for (int i = amountOfPoints; i < dots.Count; i++)
             {
-                radius = 0.3f;
+                Destroy(dots[i].gameObject);
             }
-
-            Gizmos.DrawSphere(points[i], radius);
+            dots.RemoveRange(amountOfPoints, dots.Count - amountOfPoints);
+        } else if (dots.Count < amountOfPoints)
+        {
+            for (int i = 0; i < amountOfPoints - dots.Count; i++)
+            {
+                SpawnLineDot();
+            }
         }
+
+        List<Vector3> points = GetFinalTrajectoryPoints();
+
+        UpdateDotsPosition(points);
     }
 
-    public void UpdateTrajectory(object sender, OnDiceThrowChargeArgs args)
+    void UpdateTrajectory(object sender, OnDiceThrowChargeArgs args)
     {
         linePoints.Clear();
 
@@ -78,7 +92,7 @@ public class DiceTrajectory : MonoBehaviour
         }
     }
 
-    public Vector3 GetTrajectoryPointPosition(float distance)
+    Vector3 GetTrajectoryPointPosition(float distance)
     {
         if (linePoints.Count == 0 || distance <= 0) return transform.position;
 
@@ -100,7 +114,7 @@ public class DiceTrajectory : MonoBehaviour
         return linePoints[linePoints.Count - 1];
     }
 
-    public List<Vector3> GetFinalTrajectoryPoints()
+    List<Vector3> GetFinalTrajectoryPoints()
     {
         List<Vector3> finalPoints = new List<Vector3>();
 
@@ -127,6 +141,34 @@ public class DiceTrajectory : MonoBehaviour
         }
 
         return finalPoints;
+    }
+
+    void UpdateDotsPosition(List<Vector3> finalPoints)
+    {
+        for (int i = 0; i < amountOfPoints; i++)
+        {
+            if (i < finalPoints.Count)
+            {
+                dots[i].position = finalPoints[i];
+                dots[i].GetComponent<MeshRenderer>().enabled = true;
+                dots[i].localScale = Vector3.one * dotSize;
+                if (i == finalPoints.Count - 1)
+                {
+                    dots[i].localScale = Vector3.one * 3 * dotSize;
+                }
+            } else
+            {
+                dots[i].GetComponent<MeshRenderer>().enabled = false;
+            }
+        }
+    }
+
+    void SpawnLineDot()
+    {
+        if (dot == null) return;
+        GameObject dotObj = Instantiate(dot, Vector3.zero, Quaternion.identity, transform);
+        dotObj.GetComponent<MeshRenderer>().enabled = false;
+        dots.Add(dotObj.transform);
     }
 
 }

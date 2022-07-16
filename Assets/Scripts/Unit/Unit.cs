@@ -26,6 +26,8 @@ public class Unit : MonoBehaviour
     private float slerpTime = .5f;
     [SerializeField]
     private float recoveryTimer = 1;
+    [SerializeField]
+    private float destroyDelay = 1;
 
     [Header("References")]
     [SerializeField]
@@ -62,13 +64,13 @@ public class Unit : MonoBehaviour
         {
             case UnitStates.Ragdolling:
                 {
-                    if (unitRigidbody.velocity.magnitude < .01f && unitRigidbody.angularVelocity.magnitude < .01f )
+                    if (unitRigidbody.velocity.magnitude < .01f && unitRigidbody.angularVelocity.magnitude < .01f)
                     {
-                    ragdolTimer += Time.deltaTime;
-                        if(ragdolTimer >= recoveryTimer)
+                        ragdolTimer += Time.deltaTime;
+                        if (ragdolTimer >= recoveryTimer)
                         {
-                        ragdolTimer = 0;
-                        UnitGettingUpState();
+                            ragdolTimer = 0;
+                            UnitGettingUpState();
                         }
                     }
                     break;
@@ -87,6 +89,18 @@ public class Unit : MonoBehaviour
                 }
             case UnitStates.Moving:
                 {
+                    if (Vector3.Distance(transform.position, UnitTargetSingleton.Instance.transform.position) < 1f)
+                    {
+                        UnitAttackingState();
+                    }
+                    break;
+                }
+            case UnitStates.Attacking:
+                {
+                    if (unitAnimator.GetCurrentAnimatorStateInfo(0).IsName("Dead"))
+                    {
+                        UnitDeadState();
+                    }
                     break;
                 }
         }
@@ -131,6 +145,47 @@ public class Unit : MonoBehaviour
         unitRigidbody.isKinematic = false;
         unitNavAgent.SetDestination(UnitTargetSingleton.Instance.transform.position);
         unitAnimator.SetBool("Moving", true);
+    }
+
+    private void UnitAttackingState()
+    {
+        state = UnitStates.Attacking;
+        unitNavAgent.enabled = false;
+        unitRigidbody.isKinematic = true;
+        unitCollider.enabled = false;
+        unitAnimator.SetTrigger("Attack");
+    }
+
+    private void UnitDeadState()
+    {
+        state = UnitStates.Dead;
+        unitNavAgent.enabled = false;
+        unitRigidbody.isKinematic = true;
+        unitCollider.enabled = false;
+        StartCoroutine(DieAfterTime(destroyDelay));
+    }
+
+    public void TakeDamage(float damageToTake)
+    {
+        hp -= damageToTake;
+
+        if (hp <= 0)
+        {
+            UnitDeadState();
+        }
+        else
+        {
+            UnitRagdollState();
+            //Maybe we will need to add force
+        }
+    }
+
+    private IEnumerator DieAfterTime(float time)
+    {
+        yield return new WaitForSeconds(time);
+
+        Destroy(this.gameObject);
+        yield break;
     }
 }
 
