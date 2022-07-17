@@ -12,8 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28daddb322bb9124fbf72111f8526494, type: 3}
   m_Name: Wave5
   m_EditorClassIdentifier: 
-  Enemy:
-  - {fileID: 6278937068802407743, guid: d4a0854449347984db54319775cfe392, type: 3}
-  - {fileID: 6278937068802407743, guid: d4a0854449347984db54319775cfe392, type: 3}
+  enemies:
+  - {fileID: 1388961465769212084, guid: 1490d9655e64a1d4bb731ca5a80923c7, type: 3}
   spawnOnTick: 25
   intervalBeetweenSpawn: 4
