@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28daddb322bb9124fbf72111f8526494, type: 3}
   m_Name: Wave2
   m_EditorClassIdentifier: 
-  Enemy:
-  - {fileID: 7631489084001888693, guid: d8f6502608a180a4bb30f84b689e4f7c, type: 3}
-  - {fileID: 7631489084001888693, guid: d8f6502608a180a4bb30f84b689e4f7c, type: 3}
-  - {fileID: 7631489084001888693, guid: d8f6502608a180a4bb30f84b689e4f7c, type: 3}
-  - {fileID: 7631489084001888693, guid: d8f6502608a180a4bb30f84b689e4f7c, type: 3}
+  enemies:
+  - {fileID: 1388961465769212084, guid: 7cfe7394d3851a54189cc3f2a0ee0e51, type: 3}
+  - {fileID: 1388961465769212084, guid: 7cfe7394d3851a54189cc3f2a0ee0e51, type: 3}
+  - {fileID: 1388961465769212084, guid: 7cfe7394d3851a54189cc3f2a0ee0e51, type: 3}
+  - {fileID: 1388961465769212084, guid: 7cfe7394d3851a54189cc3f2a0ee0e51, type: 3}
   spawnOnTick: 7
-  intervalBeetweenSpawn: 3
+  intervalBeetweenSpawn: 6
