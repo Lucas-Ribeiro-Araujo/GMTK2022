@@ -63,8 +63,9 @@ Material:
     - _EmissionMult: 10
     - _QueueControl: 0
     - _QueueOffset: 0
+    - _emissive: 5
     - _erode: 0
     m_Colors:
-    - _Color1: {r: 0.52642196, g: 0.23113209, b: 1, a: 0}
+    - _Color1: {r: 0.23137254, g: 0.64314777, b: 1, a: 0}
     - _Color2: {r: 0.27117634, g: 0, b: 1, a: 0}
   m_BuildTextureStacks: []
