@@ -65,7 +65,7 @@ public class DiceThrower : MonoBehaviour
     void ThrowStart(object sender, OnDiceThrowStartArgs args)
     {
         if (selectedDice == null) return;
-        if (selectedDice.selectableState == SelectableState.Transitioning) return;
+        if (selectedDice.state == DiceState.Transitioning) return;
 
         throwingState = ThrowingState.Charging;
 
@@ -79,7 +79,9 @@ public class DiceThrower : MonoBehaviour
     void Throw(object sender, OnDiceThrowArgs args)
     {
         if (selectedDice == null) return;
-        if (selectedDice.selectableState == SelectableState.Transitioning) return;
+        if (selectedDice.state == DiceState.Transitioning) return;
+
+        selectedDice.state = DiceState.Thrown;
 
         selectedDice.EnablePhysics(true);
 
@@ -100,7 +102,7 @@ public class DiceThrower : MonoBehaviour
 
     IEnumerator SelectDiceAnimation(Dice dice)
     {
-        dice.selectableState = SelectableState.Transitioning;
+        dice.state = DiceState.Transitioning;
         dice.EnablePhysics(false);
 
         float duration = selectAnimationDuration;
@@ -113,7 +115,7 @@ public class DiceThrower : MonoBehaviour
             dice.transform.position = Vector3.Lerp(origin, destiny, time / duration);
             yield return null;
         }
-        dice.selectableState = SelectableState.NotSelectable;
+        dice.state = DiceState.Inactive;
         throwingState = ThrowingState.ReadyToThrow;
     }
 
@@ -122,11 +124,11 @@ public class DiceThrower : MonoBehaviour
         if (diceUnselectionOrigin == null)
         {
             dice.EnablePhysics(true);
-            dice.selectableState = SelectableState.Selectable;
+            dice.state = DiceState.Selectable;
             yield break;
         }
 
-        dice.selectableState = SelectableState.Transitioning;
+        dice.state = DiceState.Transitioning;
         float duration = selectAnimationDuration;
 
         Vector3 origin = transform.position;
@@ -138,7 +140,7 @@ public class DiceThrower : MonoBehaviour
             yield return null;
         }
         dice.EnablePhysics(true);
-        dice.selectableState = SelectableState.Selectable;
+        dice.state = DiceState.Selectable;
     }
 
 }

@@ -21,18 +21,14 @@ public static class Utils
 
     public static bool RotationEquals(Quaternion r1, Quaternion r2, float threshold = 0.9999f)
     {
-        float abs = Mathf.Abs(Quaternion.Dot(r1, r2));
-        if (abs >= threshold)
-            return true;
-        return false;
+        float dot = Quaternion.Dot(r1, r2);
+        return dot >= threshold;
     }
 
     public static bool DirectionEquals(Vector3 r1, Vector3 r2, float threshold = 0.9999f)
     {
-        float abs = Mathf.Abs(Vector3.Dot(r1, r2));
-        if (abs >= threshold)
-            return true;
-        return false;
+        float dot = Vector3.Dot(r1, r2);
+        return dot >= threshold;
     }
 
 }

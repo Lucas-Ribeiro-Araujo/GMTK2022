@@ -22,6 +22,11 @@ PrefabInstance:
       propertyPath: m_Extents.y
       value: 0.008
       objectReference: {fileID: 0}
+    - target: {fileID: -5775345615218159649, guid: d779cc10338876b499d9e6cc040921fc,
+        type: 3}
+      propertyPath: diceType
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: -4117655353178137081, guid: d779cc10338876b499d9e6cc040921fc,
         type: 3}
       propertyPath: m_Mesh
@@ -61,27 +66,27 @@ PrefabInstance:
     - target: {fileID: 592746847926526092, guid: d779cc10338876b499d9e6cc040921fc,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.0804386
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 592746847926526092, guid: d779cc10338876b499d9e6cc040921fc,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.10018541
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 592746847926526092, guid: d779cc10338876b499d9e6cc040921fc,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.14762494
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 592746847926526092, guid: d779cc10338876b499d9e6cc040921fc,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7071067
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 592746847926526092, guid: d779cc10338876b499d9e6cc040921fc,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.7071068
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 592746847926526092, guid: d779cc10338876b499d9e6cc040921fc,
         type: 3}
@@ -91,7 +96,7 @@ PrefabInstance:
     - target: {fileID: 592746847926526092, guid: d779cc10338876b499d9e6cc040921fc,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 592746847926526092, guid: d779cc10338876b499d9e6cc040921fc,
         type: 3}
