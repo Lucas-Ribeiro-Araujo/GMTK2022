@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: Wave1
   m_EditorClassIdentifier: 
   Enemy:
-  - {fileID: 7112700389111561132, guid: 37a0c49dcec40f5439d537036eec69de, type: 3}
-  - {fileID: 7112700389111561132, guid: 37a0c49dcec40f5439d537036eec69de, type: 3}
-  - {fileID: 7112700389111561132, guid: 37a0c49dcec40f5439d537036eec69de, type: 3}
-  - {fileID: 7112700389111561132, guid: 37a0c49dcec40f5439d537036eec69de, type: 3}
-  - {fileID: 7112700389111561132, guid: 37a0c49dcec40f5439d537036eec69de, type: 3}
-  - {fileID: 7112700389111561132, guid: 37a0c49dcec40f5439d537036eec69de, type: 3}
+  - {fileID: 9000634534842016814, guid: ba6eab1b7822a3c47a397f1f77cba04d, type: 3}
+  - {fileID: 9000634534842016814, guid: ba6eab1b7822a3c47a397f1f77cba04d, type: 3}
+  - {fileID: 9000634534842016814, guid: ba6eab1b7822a3c47a397f1f77cba04d, type: 3}
+  - {fileID: 9000634534842016814, guid: ba6eab1b7822a3c47a397f1f77cba04d, type: 3}
+  - {fileID: 9000634534842016814, guid: ba6eab1b7822a3c47a397f1f77cba04d, type: 3}
+  - {fileID: 9000634534842016814, guid: ba6eab1b7822a3c47a397f1f77cba04d, type: 3}
   spawnOnTick: 2
-  intervalBeetweenSpawn: 4
+  intervalBeetweenSpawn: 3

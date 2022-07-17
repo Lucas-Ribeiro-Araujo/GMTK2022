@@ -10,12 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 28daddb322bb9124fbf72111f8526494, type: 3}
-  m_Name: Wave1 2
+  m_Name: Wave3
   m_EditorClassIdentifier: 
   Enemy:
-  - {fileID: 7112700389111561132, guid: b4794b76677c55046b89d983f0b0b321, type: 3}
-  - {fileID: 7112700389111561132, guid: b4794b76677c55046b89d983f0b0b321, type: 3}
-  - {fileID: 7112700389111561132, guid: b4794b76677c55046b89d983f0b0b321, type: 3}
-  - {fileID: 7112700389111561132, guid: b4794b76677c55046b89d983f0b0b321, type: 3}
-  spawnOnTick: 5
+  - {fileID: 5696275952788975770, guid: f30433868a1eb1d489962e56f931a070, type: 3}
+  - {fileID: 5696275952788975770, guid: f30433868a1eb1d489962e56f931a070, type: 3}
+  - {fileID: 5696275952788975770, guid: f30433868a1eb1d489962e56f931a070, type: 3}
+  spawnOnTick: 15
   intervalBeetweenSpawn: 4
