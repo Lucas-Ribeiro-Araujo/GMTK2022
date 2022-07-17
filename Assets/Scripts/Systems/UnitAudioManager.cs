@@ -7,19 +7,21 @@ namespace Assets.Scripts.Systems
     [RequireComponent(typeof(Unit))]
     public class UnitAudioManager : AudioEmitter
     {
-        [SerializeField]
         private Unit unit;
 
         void Start()
         {
             unit = GetComponent<Unit>();
-            unit.OnWalk += EmitSounds;
+            unit.OnUnitCollision += EmitSounds;
         }
 
-        
-        private void EmitSounds(object sender, EventArgs args)
+
+        private void EmitSounds(object sender, OnCollisionArgs args)
         {
-            source.PlayOneShot(audioClips[UnityEngine.Random.Range(0, audioClips.Length - 1)]);
+            if (args.collisionType == CollisionType.Table)
+            {
+                source.PlayOneShot(audioClips[UnityEngine.Random.Range(0, audioClips.Length - 1)]);
+            }
         }
 
     }

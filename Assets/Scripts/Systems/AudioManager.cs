@@ -9,13 +9,11 @@ public class AudioManager : MonoBehaviour
     AudioSource musicSource;
     [SerializeField]
     AudioSource dialogSource;
+    [SerializeField]
+    float fadeOutRate;
+    bool fadeOut;
 
     private event EventHandler OnDialogEnd;
-
-    void Awake()
-    {
-        DontDestroyOnLoad(this);
-    }
 
     private void Update()
     {
@@ -27,11 +25,34 @@ public class AudioManager : MonoBehaviour
                 OnDialogEnd?.Invoke(this, EventArgs.Empty);
             }
         }
+
+        if (fadeOut)
+        {
+            musicSource.volume -= fadeOutRate * Time.deltaTime;
+        }
+
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            StopMusic();
+        }
+        if (Input.GetKeyDown(KeyCode.J))
+        {
+            StartMusic();
+        }
     }
 
-    public void SetMusicClip(AudioClip clip)
+    public void StartMusic()
     {
-        musicSource.clip = clip;
+        fadeOut = false;
+        musicSource.volume = 1;
+        musicSource.loop = true;
+        musicSource.Play();
+    }
+
+    public void StopMusic()
+    {
+        fadeOut = true;
+        musicSource.loop = false;
     }
 
     public EventHandler PlayDialogClip(AudioClip clip)
