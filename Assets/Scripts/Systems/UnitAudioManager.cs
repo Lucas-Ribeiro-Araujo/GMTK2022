@@ -18,6 +18,8 @@ namespace Assets.Scripts.Systems
 
         private void EmitSounds(object sender, OnCollisionArgs args)
         {
+            source.volume = args.impactPower / 2;
+
             if (args.collisionType == CollisionType.Table)
             {
                 source.PlayOneShot(audioClips[UnityEngine.Random.Range(0, audioClips.Length - 1)]);
