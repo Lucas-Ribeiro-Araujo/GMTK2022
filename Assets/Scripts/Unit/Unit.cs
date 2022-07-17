@@ -32,6 +32,11 @@ public class Unit : MonoBehaviour
 
     [SerializeField]
     private float destroyDelay = 1;
+    [SerializeField]
+    private float damageBlinkDecrease = 0.85f;
+    private float damageBlinkRatio = 1;
+
+    bool isDamageBlinking = false;
 
 
     [SerializeField]
@@ -55,6 +60,9 @@ public class Unit : MonoBehaviour
     [SerializeField]
     private Collider unitCollider;
 
+    private MeshRenderer meshRenderer;
+    private Material unitMaterial;
+
     public event EventHandler<EventArgs> OnWalk;
     public event EventHandler<OnCollisionArgs> OnUnitCollision;
 
@@ -71,12 +79,29 @@ public class Unit : MonoBehaviour
         unitNavAgent.updateRotation = false;
         unitNavAgent.updateUpAxis = false;
 
+
+        meshRenderer = GetComponent<MeshRenderer>();
+        unitMaterial = meshRenderer.material;
+        unitMaterial.SetFloat("_WhitePiece", UnityEngine.Random.Range(0, 10) > 5f ? 1 : 0);
     }
 
 
     private void FixedUpdate()
     {
         bool isStanding = Utils.DirectionEquals(Vector3.up, transform.up, .97f);
+
+        if (isDamageBlinking)
+        {
+            damageBlinkRatio = damageBlinkRatio * damageBlinkDecrease;
+
+            if (damageBlinkRatio < 0.01f)
+            {
+                isDamageBlinking = false;
+                damageBlinkRatio = 0;
+            }
+
+            unitMaterial.SetFloat("_Damage", damageBlinkRatio);
+        }
 
         switch (state)
         {
@@ -90,12 +115,14 @@ public class Unit : MonoBehaviour
                         if (isStanding)
                         {
                             UnitMovingState();
-                        } else
+                        }
+                        else
                         {
                             ragdollRecoverCoroutine = StartCoroutine(RagdollRecover());
                         }
                     }
-                } else
+                }
+                else
                 {
                     ragdollRecoveryTimer = 0;
                 }
@@ -111,7 +138,8 @@ public class Unit : MonoBehaviour
                         UnitRagdollState();
                         break;
                     }
-                } else
+                }
+                else
                 {
                     ragdollToleranceTimer = 0;
                 }
@@ -124,7 +152,7 @@ public class Unit : MonoBehaviour
                     if (jumpTimer > TimeBetweemJumps && isStanding)
                     {
                         jumpTimer = 0f;
-                        
+
                         unitRigidbody.AddForce(Vector3.up * jumpForce);
                         unitRigidbody.AddForce(unitNavAgent.desiredVelocity.normalized * forceTowardsDestination);
                     }
@@ -209,6 +237,10 @@ public class Unit : MonoBehaviour
         }
 
         hp -= damageToTake;
+
+        damageBlinkRatio = 1;
+        unitMaterial.SetFloat("_Damage", 1);
+        isDamageBlinking = true;
 
         if (ragdollRecoverCoroutine != null)
         {

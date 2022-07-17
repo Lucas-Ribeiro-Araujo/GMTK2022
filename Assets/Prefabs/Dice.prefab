@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: -5775345615218159649}
   - component: {fileID: 4194273869205735374}
   - component: {fileID: 6633243236577387267}
+  - component: {fileID: 3222974613923404454}
   m_Layer: 0
   m_Name: Dice
   m_TagString: Untagged
@@ -264,3 +265,24 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &3222974613923404454
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 248274891237030454}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f69105189b38db46b4518a1308a3c12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  diceFX:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  skill1Range: 2
+  skillKnockbackForce: 0
+  unitsLayer:
+    serializedVersion: 2
+    m_Bits: 128

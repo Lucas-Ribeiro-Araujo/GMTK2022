@@ -128,6 +128,28 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 5d737653f5d600748b74ec26f6e34aaf, type: 2}
+    - target: {fileID: 3222974613923404454, guid: d779cc10338876b499d9e6cc040921fc,
+        type: 3}
+      propertyPath: diceFX
+      value: 
+      objectReference: {fileID: 4068765157502665723, guid: bb27cfcc5e6d93f46a5e27f339599a70,
+        type: 3}
+    - target: {fileID: 3222974613923404454, guid: d779cc10338876b499d9e6cc040921fc,
+        type: 3}
+      propertyPath: skillDamage
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3222974613923404454, guid: d779cc10338876b499d9e6cc040921fc,
+        type: 3}
+      propertyPath: unitsLayer.m_Bits
+      value: 128
+      objectReference: {fileID: 0}
+    - target: {fileID: 3222974613923404454, guid: d779cc10338876b499d9e6cc040921fc,
+        type: 3}
+      propertyPath: diceFX.Array.data[0]
+      value: 
+      objectReference: {fileID: 4068765157502665723, guid: bb27cfcc5e6d93f46a5e27f339599a70,
+        type: 3}
     - target: {fileID: 4581857966196240169, guid: d779cc10338876b499d9e6cc040921fc,
         type: 3}
       propertyPath: m_Mesh

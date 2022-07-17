@@ -8,7 +8,7 @@ public class Dice : MonoBehaviour, IClickable
 {
     
     public event EventHandler<OnCollisionArgs> OnDiceCollision;
-    public event EventHandler OnDiceMaxRoll;
+    public event EventHandler<OnDiceSkillArgs> OnDiceMaxRoll;
 
     public DiceState state = DiceState.Selectable;
     public DiceType diceType;
@@ -45,7 +45,9 @@ public class Dice : MonoBehaviour, IClickable
 
                 if (diceStationaryTimer >= diceStationaryDelay)
                 {
-                    OnDiceMaxRoll?.Invoke(this, EventArgs.Empty);
+                    OnDiceSkillArgs args = new OnDiceSkillArgs();
+                    args.type = diceType;
+                    OnDiceMaxRoll?.Invoke(this, args);
                     diceStationaryTimer = 0f;
                 }
             }
@@ -57,7 +59,7 @@ public class Dice : MonoBehaviour, IClickable
 
     }
 
-    void MaxRoll(object sender, EventArgs args)
+    void MaxRoll(object sender, OnDiceSkillArgs args)
     {
         state = DiceState.Inactive;
         Debug.Log("Max Roll");
