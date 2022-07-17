@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 28daddb322bb9124fbf72111f8526494, type: 3}
-  m_Name: Wave4
+  m_Name: ChessWave4
   m_EditorClassIdentifier: 
   enemies:
   - {fileID: 1388961465769212084, guid: 16d815433e628cc4e8a7bdcf54396fd8, type: 3}
