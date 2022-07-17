@@ -8,8 +8,12 @@ public class Dice : MonoBehaviour, IClickable
 {
 
     public event EventHandler<OnCollisionArgs> OnDiceCollision;
+    public event EventHandler OnDiceMaxRoll;
 
-    public SelectableState selectableState = SelectableState.Selectable;
+    public DiceState state = DiceState.Selectable;
+
+    public float diceStationaryDelay = 1f;
+    float diceStationaryTimer = 0f;
 
     Rigidbody rb;
 
@@ -17,12 +21,47 @@ public class Dice : MonoBehaviour, IClickable
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        OnDiceMaxRoll += MaxRoll;
+    }
+
+    void OnDestroy()
+    {
+        OnDiceMaxRoll -= MaxRoll;
     }
 
     // Update is called once per frame
     void Update()
     {
         if (transform.position.y < -50) Destroy(gameObject);
+
+        if (state == DiceState.Thrown)
+        {
+            bool isUp = Utils.DirectionEquals(Vector3.up, transform.up, .98f);
+
+            if (rb.velocity.magnitude < .01f && rb.angularVelocity.magnitude < .01f && isUp)
+            {
+                diceStationaryTimer += Time.deltaTime;
+
+                if (diceStationaryTimer >= diceStationaryDelay)
+                {
+                    OnDiceMaxRoll?.Invoke(this, EventArgs.Empty);
+                    diceStationaryTimer = 0f;
+                }
+            }
+            else
+            {
+                diceStationaryTimer = 0f;
+            }
+        }
+
+    }
+
+    void MaxRoll(object sender, EventArgs args)
+    {
+        state = DiceState.Inactive;
+        Debug.Log("Max Roll");
+
+        // Implement max roll effect/power
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -63,9 +102,7 @@ public class Dice : MonoBehaviour, IClickable
 
             if (impactPower > 5 && unit != null)
             {
-                Knockback knockback = new Knockback();
-                knockback.origin = collision.contacts[0].point;
-                knockback.force = collision.contacts[0].normal * -impactPower * 2f;
+                Knockback knockback = Knockback.Empty;
                 unit.TakeDamage(Mathf.Max(impactPower, 0), knockback);
             }
         }
@@ -93,11 +130,12 @@ public class Dice : MonoBehaviour, IClickable
 
     public void OnRelease()
     {
-        if (selectableState == SelectableState.Selectable)
+        if (state == DiceState.Selectable)
         {
             GameManager.Instance.playerEventsManager.diceThrower.SelectDice(this);
         }
     }
+
 }
 
-public enum SelectableState { Selectable, NotSelectable, Transitioning }
+public enum DiceState { Selectable, Thrown, Transitioning, Inactive }

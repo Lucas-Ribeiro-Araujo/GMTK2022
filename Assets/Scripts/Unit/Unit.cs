@@ -23,16 +23,22 @@ public class Unit : MonoBehaviour
 
     [Header("Options")]
     [SerializeField]
-    private float recoveryTimer = 1;
+    private float ragdollRecoveryDelay = 1;
     [SerializeField]
-    private float ragdolTimer;
+    private float ragdollToleranceDelay = 0.2f;
+
+    private float ragdollRecoveryTimer = 0f;
+    private float ragdollToleranceTimer = 0f;
+
     [SerializeField]
     private float destroyDelay = 1;
 
+
     [SerializeField]
     private float TimeBetweemJumps;
-    [SerializeField]
+
     private float jumpTimer;
+
     [SerializeField]
     private float jumpForce;
     [SerializeField]
@@ -52,6 +58,8 @@ public class Unit : MonoBehaviour
     public event EventHandler<EventArgs> OnWalk;
     public event EventHandler<OnCollisionArgs> OnUnitCollision;
 
+    Coroutine ragdollRecoverCoroutine;
+
 
     private void Start()
     {
@@ -68,43 +76,67 @@ public class Unit : MonoBehaviour
 
     private void FixedUpdate()
     {
+        bool isStanding = Utils.DirectionEquals(Vector3.up, transform.up, .97f);
+
         switch (state)
         {
             case UnitStates.Ragdolling:
+                if (unitRigidbody.velocity.magnitude < .01f && unitRigidbody.angularVelocity.magnitude < .01f)
                 {
-                    if (unitRigidbody.velocity.magnitude < .01f && unitRigidbody.angularVelocity.magnitude < .01f)
+                    ragdollRecoveryTimer += Time.fixedDeltaTime;
+                    if (ragdollRecoveryTimer >= ragdollRecoveryDelay)
                     {
-                        ragdolTimer += Time.fixedDeltaTime;
-                        if (ragdolTimer >= recoveryTimer)
+                        ragdollRecoveryTimer = 0;
+                        if (isStanding)
                         {
-                            ragdolTimer = 0;
                             UnitMovingState();
-                        }
-                    }
-                    break;
-                }
-            case UnitStates.Moving:
-                {
-                    if (unitNavAgent.path != null)
-                    {
-                        unitNavAgent.nextPosition = unitRigidbody.position;
-
-                        jumpTimer += Time.fixedDeltaTime;
-                        if (jumpTimer > TimeBetweemJumps)
+                        } else
                         {
-                            jumpTimer -= TimeBetweemJumps;
-
-                            unitRigidbody.AddForce(Vector3.up * jumpForce);
-                            unitRigidbody.AddForce(unitNavAgent.desiredVelocity.normalized * forceTowardsDestination);
+                            ragdollRecoverCoroutine = StartCoroutine(RagdollRecover());
                         }
                     }
-                    break;
-                }
-            case UnitStates.Attacking:
+                } else
                 {
-                    UnitDeadState();
-                    break;
+                    ragdollRecoveryTimer = 0;
                 }
+                break;
+
+            case UnitStates.Moving:
+                if (!isStanding)
+                {
+                    ragdollToleranceTimer += Time.fixedDeltaTime;
+                    if (ragdollToleranceTimer > ragdollToleranceDelay)
+                    {
+                        ragdollToleranceTimer = 0f;
+                        UnitRagdollState();
+                        break;
+                    }
+                } else
+                {
+                    ragdollToleranceTimer = 0;
+                }
+
+                if (unitNavAgent.path != null)
+                {
+                    unitNavAgent.nextPosition = unitRigidbody.position;
+
+                    jumpTimer += Time.fixedDeltaTime;
+                    if (jumpTimer > TimeBetweemJumps && isStanding)
+                    {
+                        jumpTimer = 0f;
+                        
+                        unitRigidbody.AddForce(Vector3.up * jumpForce);
+                        unitRigidbody.AddForce(unitNavAgent.desiredVelocity.normalized * forceTowardsDestination);
+                    }
+                }
+                break;
+
+            case UnitStates.Attacking:
+                UnitDeadState();
+                break;
+
+            default:
+                break;
         }
 
         if (Input.GetKeyDown(KeyCode.R))
@@ -155,6 +187,7 @@ public class Unit : MonoBehaviour
     {
         state = UnitStates.Moving;
         unitNavAgent.SetDestination(UnitTarget.transform.position);
+        jumpTimer = 0f;
     }
 
     private void UnitAttackingState()
@@ -168,9 +201,20 @@ public class Unit : MonoBehaviour
         StartCoroutine(DieAfterTime(destroyDelay));
     }
 
-    public void TakeDamage(float damageToTake, Knockback knockback)
+    public void TakeDamage(float damageToTake, Knockback knockback = null)
     {
+        if (knockback == null)
+        {
+            knockback = Knockback.Empty;
+        }
+
         hp -= damageToTake;
+
+        if (ragdollRecoverCoroutine != null)
+        {
+            StopCoroutine(ragdollRecoverCoroutine);
+            ragdollRecoverCoroutine = null;
+        }
 
         if (hp <= 0)
         {
@@ -192,6 +236,28 @@ public class Unit : MonoBehaviour
         GameManager.Instance.hpManager.TakeDamage();
         Destroy(this.gameObject);
         yield break;
+    }
+
+    private IEnumerator RagdollRecover()
+    {
+        state = UnitStates.Recovering;
+        unitRigidbody.useGravity = true;
+
+        float duration = 2f;
+
+        Vector3 originUp = transform.up;
+        Vector3 targetUp = Vector3.up;
+
+        for (float time = 0f; time < duration; time += Time.deltaTime)
+        {
+            transform.up = Vector3.Slerp(originUp, targetUp, time / duration);
+            yield return null;
+        }
+
+        unitRigidbody.useGravity = true;
+        unitRigidbody.velocity = Vector3.zero;
+        unitRigidbody.angularVelocity = Vector3.zero;
+        UnitMovingState();
     }
 
     public void EmitWalkSound()
@@ -221,6 +287,7 @@ public enum UnitStates
 {
     Moving,
     Ragdolling,
+    Recovering,
     Attacking,
     Dead
 }
