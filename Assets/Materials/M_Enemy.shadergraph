@@ -17,6 +17,9 @@
         },
         {
             "m_Id": "5bb5ef75a1c14ce8a8b2c531337a8b76"
+        },
+        {
+            "m_Id": "b18373ee24914596abbdfb95ed6b647e"
         }
     ],
     "m_Keywords": [],
@@ -392,8 +395,8 @@
     ],
     "m_VertexContext": {
         "m_Position": {
-            "x": 525.9999389648438,
-            "y": -598.0
+            "x": 903.9999389648438,
+            "y": -560.0
         },
         "m_Blocks": [
             {
@@ -409,8 +412,8 @@
     },
     "m_FragmentContext": {
         "m_Position": {
-            "x": 525.9999389648438,
-            "y": -398.0000305175781
+            "x": 903.9999389648438,
+            "y": -360.0000915527344
         },
         "m_Blocks": [
             {
@@ -618,6 +621,9 @@
         },
         {
             "m_Id": "5bb5ef75a1c14ce8a8b2c531337a8b76"
+        },
+        {
+            "m_Id": "b18373ee24914596abbdfb95ed6b647e"
         }
     ]
 }
@@ -1014,10 +1020,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -77.99995422363281,
-            "y": 576.0001220703125,
-            "width": 118.99998474121094,
-            "height": 33.99993896484375
+            "x": -159.0,
+            "y": 128.00003051757813,
+            "width": 119.00001525878906,
+            "height": 33.999969482421878
         }
     },
     "m_Slots": [
@@ -1316,9 +1322,9 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -185.9999542236328,
-            "y": 372.99993896484377,
-            "width": 208.0,
+            "x": -267.0,
+            "y": -75.00000762939453,
+            "width": 208.00001525878907,
             "height": 127.00003051757813
         }
     },
@@ -2172,6 +2178,33 @@
 }
 
 {
+    "m_SGVersion": 1,
+    "m_Type": "UnityEditor.ShaderGraph.Internal.Vector1ShaderProperty",
+    "m_ObjectId": "b18373ee24914596abbdfb95ed6b647e",
+    "m_Guid": {
+        "m_GuidSerialized": "b1091aec-1e28-4e6a-8238-cce75eb00ba9"
+    },
+    "m_Name": "Death",
+    "m_DefaultRefNameVersion": 1,
+    "m_RefNameGeneratedByDisplayName": "Death",
+    "m_DefaultReferenceName": "_Death",
+    "m_OverrideReferenceName": "",
+    "m_GeneratePropertyBlock": true,
+    "m_UseCustomSlotLabel": false,
+    "m_CustomSlotLabel": "",
+    "m_Precision": 0,
+    "overrideHLSLDeclaration": false,
+    "hlslDeclarationOverride": 0,
+    "m_Hidden": false,
+    "m_Value": 0.0,
+    "m_FloatType": 0,
+    "m_RangeValues": {
+        "x": 0.0,
+        "y": 1.0
+    }
+}
+
+{
     "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.SampleTexture2DNode",
     "m_ObjectId": "b2bb9ca93db1448d813969ff0094c7ff",
@@ -2491,10 +2524,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": 56.00003433227539,
-            "y": 350.0,
-            "width": 208.00003051757813,
-            "height": 325.99993896484377
+            "x": -10.999995231628418,
+            "y": -166.00001525878907,
+            "width": 208.0,
+            "height": 326.0001220703125
         }
     },
     "m_Slots": [
