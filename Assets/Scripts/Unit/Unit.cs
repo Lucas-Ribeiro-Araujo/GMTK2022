@@ -157,10 +157,11 @@ public class Unit : MonoBehaviour
                         unitRigidbody.AddForce(unitNavAgent.desiredVelocity.normalized * forceTowardsDestination);
                     }
                 }
-                break;
-
-            case UnitStates.Attacking:
-                UnitDeadState();
+                if(Vector3.Distance(transform.position, UnitTarget.transform.position) < 2)
+                {
+                    GameManager.Instance.hpManager.TakeDamage();
+                    TakeDamage(maxHp);
+                }
                 break;
 
             default:
@@ -265,7 +266,6 @@ public class Unit : MonoBehaviour
     {
         yield return new WaitForSeconds(time);
 
-        GameManager.Instance.hpManager.TakeDamage();
         Destroy(this.gameObject);
         yield break;
     }

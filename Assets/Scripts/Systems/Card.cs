@@ -5,10 +5,40 @@ using UnityEngine;
 
 public class Card : MonoBehaviour
 {
-  public void OnTakeDamage(object sender, EventArgs e)
+    bool destroyed;
+
+    [SerializeField]
+    float dissolveRate = 1;
+    float dissolveValue = 0;
+
+    MeshRenderer meshRenderer;
+    Material material;
+
+    private void Start()
     {
-        Debug.Log("i die: " + gameObject.name);
-        gameObject.SetActive(false);
+        meshRenderer = GetComponent<MeshRenderer>();
+        material = meshRenderer.material;
+    }
+
+    private void Update()
+    {
+        if (destroyed)
+        {
+            dissolveValue += dissolveRate * Time.deltaTime;
+            material.SetFloat("_Death", dissolveValue);
+            if (dissolveValue > 1)
+            {
+                dissolveValue = 0;
+                destroyed = false;
+
+                gameObject.SetActive(false);
+            }
+        }
+    }
+
+    public void OnTakeDamage(object sender, EventArgs e)
+    {
+        destroyed = true;
     }
 
 }
