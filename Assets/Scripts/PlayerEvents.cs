@@ -19,22 +19,29 @@ public class PlayerEvents
     public float aimIntersectionZPos = 10f;
     public float minTargetHeight = 0f;
     public float heightGain = 3f;
-    public Vector3 throwOrigin = Vector3.zero;
+    public DiceThrower diceThrower;
 
     public Transform directionArrow;
 
     public void Start()
     {
-        if (directionArrow != null)
+        if (diceThrower == null)
         {
-            directionArrow.position = throwOrigin;
+            Debug.LogError("A DiceThrower component is needed");
         }
     }
 
     public void Update()
     {
-        if (Input.GetButtonDown("Click")){
-            GameManager.Instance.StartCoroutine(DiceThrow());
+        if (directionArrow != null)
+        {
+            directionArrow.position = diceThrower.transform.position;
+        }
+        if (Input.GetButton("Click")){
+            if (diceThrower.throwingState == ThrowingState.ReadyToThrow)
+            {
+                GameManager.Instance.StartCoroutine(DiceThrow());
+            }
         }
 
         throwTarget = CalculateThrowTarget();
@@ -45,9 +52,8 @@ public class PlayerEvents
         OnDiceThrowTargetUpdate?.Invoke(this, new OnDiceThrowTargetUpdateArgs
         {
             targetPosition = throwTarget,
-            throwOrigin = throwOrigin
+            throwOrigin = diceThrower.transform.position
         });
-
     }
 
     IEnumerator DiceThrow() {

@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OnDiceThrowStartArgs
-{
-    
+public enum CollisionType {
+    Table, Wood, Metal, Generic
 }

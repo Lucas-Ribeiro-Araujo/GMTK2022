@@ -8,17 +8,12 @@ public class Unit : MonoBehaviour
 {
     [Header("Stats")]
     [SerializeField]
-    private float moveSpeed = 1;
+    private UnitStates state;
     [SerializeField]
-    private float acceleration = 1;
+    private float hp;
     [SerializeField]
     private float maxHp = 100;
 
-    [SerializeField]
-    private UnitStates state;
-
-    [SerializeField]
-    private float hp;
 
     private Quaternion previousRotation;
     private Vector3 previousPosition;
@@ -33,7 +28,6 @@ public class Unit : MonoBehaviour
 
     [SerializeField]
     private float TimeBetweemJumps;
-    private float TimeBetweemJumpsCounter = 2;
     [SerializeField]
     private float jumpTimer;
     [SerializeField]
@@ -50,13 +44,10 @@ public class Unit : MonoBehaviour
     private Rigidbody unitRigidbody;
 
     [SerializeField]
-    private Transform unitMeshTransform;
-    [SerializeField]
     private Collider unitCollider;
 
-
-    private Vector3 recoveryPoint;
-
+    public event EventHandler<EventArgs> OnWalk;
+    public event EventHandler<OnCollisionArgs> OnUnitCollision;
 
 
     private void Start()
@@ -64,7 +55,6 @@ public class Unit : MonoBehaviour
         UnitRagdollState();
 
         hp = maxHp;
-        currentPath = new NavMeshPath();
 
         unitNavAgent.updatePosition = false;
         unitNavAgent.updateRotation = false;
@@ -72,9 +62,6 @@ public class Unit : MonoBehaviour
 
     }
 
-    public EventHandler<EventArgs> OnWalk;
-    NavMeshPath currentPath;
-    int currentPathIndex = 1;
 
     private void FixedUpdate()
     {
@@ -95,24 +82,17 @@ public class Unit : MonoBehaviour
                 }
             case UnitStates.Moving:
                 {
-                    if (currentPath != null)
+                    if (unitNavAgent.path != null)
                     {
+                        unitNavAgent.nextPosition = unitRigidbody.position;
+
                         jumpTimer += Time.fixedDeltaTime;
-                        if (jumpTimer > TimeBetweemJumpsCounter)
+                        if (jumpTimer > TimeBetweemJumps)
                         {
-                            TimeBetweemJumpsCounter += TimeBetweemJumps;
-
-
-                            //unitNavAgent.nextPosition = currentPath.corners[currentPathIndex];
-                            if (Vector3.Distance(transform.position, unitNavAgent.nextPosition) < 2 && )
-                            {
-
-                                currentPathIndex++;
-                                unitNavAgent.nextPosition = currentPath.corners[currentPathIndex];
-                            }
+                            jumpTimer -= TimeBetweemJumps;
 
                             unitRigidbody.AddForce(Vector3.up * jumpForce);
-                            unitRigidbody.AddForce((currentPath.corners[currentPathIndex] - transform.position).normalized * forceTowardsDestination);
+                            unitRigidbody.AddForce(unitNavAgent.desiredVelocity.normalized * forceTowardsDestination);
                         }
                     }
                     break;
@@ -130,6 +110,39 @@ public class Unit : MonoBehaviour
         }
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        List<ContactPoint> contacts = new List<ContactPoint>(collision.contacts);
+        foreach (ContactPoint contact in contacts)
+        {
+            OnCollisionArgs args = new OnCollisionArgs();
+
+            args.collisionVelocity = collision.relativeVelocity;
+            args.collisionNormal = contact.normal;
+            args.contactPosition = contact.point;
+
+            args.impactPower = Vector3.Dot(args.collisionVelocity.normalized, args.collisionNormal);
+
+            switch (collision.collider.tag)
+            {
+                case "Table":
+                    args.collisionType = CollisionType.Table;
+                    break;
+                case "Wood":
+                    args.collisionType = CollisionType.Wood;
+                    break;
+                case "Metal":
+                    args.collisionType = CollisionType.Metal;
+                    break;
+                default:
+                    args.collisionType = CollisionType.Generic;
+                    break;
+            }
+
+            OnUnitCollision?.Invoke(this, args);
+        }
+    }
+
     bool RotationEquals(Quaternion r1, Quaternion r2)
     {
         float abs = Mathf.Abs(Quaternion.Dot(r1, r2));
@@ -141,15 +154,13 @@ public class Unit : MonoBehaviour
 
     private void UnitRagdollState()
     {
-        unitNavAgent.CalculatePath(UnitTargetSingleton.Instance.transform.position, currentPath);
         state = UnitStates.Ragdolling;
     }
 
     private void UnitMovingState()
     {
         state = UnitStates.Moving;
-        unitNavAgent.CalculatePath(UnitTargetSingleton.Instance.transform.position, currentPath);
-        unitNavAgent.nextPosition = currentPath.corners[1];
+        unitNavAgent.SetDestination(UnitTargetSingleton.Instance.transform.position);
     }
 
     private void UnitAttackingState()
@@ -196,24 +207,16 @@ public class Unit : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        if (currentPath != null)
+        if (unitNavAgent.path != null)
         {
-
-            for (int i = 0; i < currentPath.corners.Length; i++)
+            for (int i = 0; i < unitNavAgent.path.corners.Length; i++)
             {
                 Gizmos.color = Color.blue;
                 if (i > 0)
-                    Gizmos.DrawLine(currentPath.corners[i - 1], currentPath.corners[i]);
-                if (currentPathIndex == i)
-                {
-                    Gizmos.color = Color.cyan;
-                    Gizmos.DrawWireSphere(currentPath.corners[currentPathIndex], 1f);
-                }
-               
+                    Gizmos.DrawLine(unitNavAgent.path.corners[i - 1], unitNavAgent.path.corners[i]);
             }
 
-        Gizmos.color = Color.red;
-        Gizmos.DrawRay(transform.position, unitNavAgent.nextPosition);
+            Gizmos.DrawRay(unitNavAgent.nextPosition, unitNavAgent.desiredVelocity);
         }
     }
 }

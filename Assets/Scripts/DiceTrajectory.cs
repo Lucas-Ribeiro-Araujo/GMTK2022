@@ -23,6 +23,8 @@ public class DiceTrajectory : MonoBehaviour
     [Min(0f)]
     float dotSize = 10f;
 
+    bool show = false;
+
     List<Vector3> linePoints = new List<Vector3>();
     List<Transform> dots = new List<Transform>();
 
@@ -37,16 +39,13 @@ public class DiceTrajectory : MonoBehaviour
         }
 
         GameManager.Instance.playerEvents.OnDiceThrowCharge += UpdateTrajectory;
-
-        for (int i = 0; i < amountOfPoints; i++)
-        {
-            SpawnLineDot();
-        }
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (!show) return;
+
         if (dots.Count > amountOfPoints)
         {
             for (int i = amountOfPoints; i < dots.Count; i++)
@@ -56,7 +55,8 @@ public class DiceTrajectory : MonoBehaviour
             dots.RemoveRange(amountOfPoints, dots.Count - amountOfPoints);
         } else if (dots.Count < amountOfPoints)
         {
-            for (int i = 0; i < amountOfPoints - dots.Count; i++)
+            int diff = amountOfPoints - dots.Count;
+            for (int i = 0; i < diff; i++)
             {
                 SpawnLineDot();
             }
@@ -67,8 +67,24 @@ public class DiceTrajectory : MonoBehaviour
         UpdateDotsPosition(points);
     }
 
+    public void ShowTrajectory(bool value)
+    {
+        show = value;
+        if (!value)
+        {
+            foreach (Transform dot in dots)
+            {
+                Destroy(dot.gameObject);
+            }
+            dots.Clear();
+            linePoints.Clear();
+        }
+    }
+
     void UpdateTrajectory(object sender, OnDiceThrowChargeArgs args)
     {
+        if (!show) return;
+
         linePoints.Clear();
 
         Vector3 velocity = diceThrower.throwDirection * args.power;
@@ -158,7 +174,7 @@ public class DiceTrajectory : MonoBehaviour
                 }
             } else
             {
-                dots[i].GetComponent<MeshRenderer>().enabled = false;
+                dots[i].GetComponent<MeshRenderer>().enabled = false; 
             }
         }
     }

@@ -65,6 +65,11 @@ PrefabInstance:
     - target: {fileID: 7112700389111561132, guid: b4794b76677c55046b89d983f0b0b321,
         type: 3}
       propertyPath: m_Name
+      value: Pawn
+      objectReference: {fileID: 0}
+    - target: {fileID: 7112700389111561132, guid: b4794b76677c55046b89d983f0b0b321,
+        type: 3}
+      propertyPath: m_TagString
       value: Unit
       objectReference: {fileID: 0}
     m_RemovedComponents: []
