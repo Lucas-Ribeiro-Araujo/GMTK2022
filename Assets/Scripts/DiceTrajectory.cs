@@ -38,7 +38,7 @@ public class DiceTrajectory : MonoBehaviour
             return;
         }
 
-        GameManager.Instance.playerEvents.OnDiceThrowCharge += UpdateTrajectory;
+        GameManager.Instance.playerEventsManager.OnDiceThrowCharge += UpdateTrajectory;
     }
 
     // Update is called once per frame

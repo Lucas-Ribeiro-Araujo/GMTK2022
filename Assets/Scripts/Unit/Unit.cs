@@ -189,7 +189,7 @@ public class Unit : MonoBehaviour
     {
         yield return new WaitForSeconds(time);
 
-        HPManager.Instance.TakeDamage();
+        GameManager.Instance.hpManager.TakeDamage();
         Destroy(this.gameObject);
         yield break;
     }

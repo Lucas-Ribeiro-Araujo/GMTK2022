@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class PlayerEvents
+public class PlayerEventsManager : IManager
 {
 
     public event EventHandler<OnDiceThrowStartArgs> OnDiceThrowStart;
@@ -95,4 +95,8 @@ public class PlayerEvents
         return Vector3.forward;
     }
 
+    public void Reset()
+    {
+        
+    }
 }

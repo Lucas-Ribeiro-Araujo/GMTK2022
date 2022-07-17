@@ -13,7 +13,7 @@ public class DiceThrower : MonoBehaviour
 
     [SerializeField]
     [Min(0f)]
-    float selectAnimationSpeed = 0.5f;
+    float selectAnimationDuration = 0.5f;
 
     public Vector3 throwDirection;
 
@@ -23,16 +23,16 @@ public class DiceThrower : MonoBehaviour
 
     void Start()
     {
-        GameManager.Instance.playerEvents.OnDiceThrowStart += ThrowStart;
-        GameManager.Instance.playerEvents.OnDiceThrowTargetUpdate += UpdateThrowDirection;
-        GameManager.Instance.playerEvents.OnDiceThrow += Throw;
+        GameManager.Instance.playerEventsManager.OnDiceThrowStart += ThrowStart;
+        GameManager.Instance.playerEventsManager.OnDiceThrowTargetUpdate += UpdateThrowDirection;
+        GameManager.Instance.playerEventsManager.OnDiceThrow += Throw;
     }
 
     void OnDestroy()
     {
-        GameManager.Instance.playerEvents.OnDiceThrowStart -= ThrowStart;
-        GameManager.Instance.playerEvents.OnDiceThrowTargetUpdate -= UpdateThrowDirection;
-        GameManager.Instance.playerEvents.OnDiceThrow -= Throw;
+        GameManager.Instance.playerEventsManager.OnDiceThrowStart -= ThrowStart;
+        GameManager.Instance.playerEventsManager.OnDiceThrowTargetUpdate -= UpdateThrowDirection;
+        GameManager.Instance.playerEventsManager.OnDiceThrow -= Throw;
     }
 
     void Update()
@@ -103,7 +103,7 @@ public class DiceThrower : MonoBehaviour
         dice.selectableState = SelectableState.Transitioning;
         dice.EnablePhysics(false);
 
-        float duration = selectAnimationSpeed;
+        float duration = selectAnimationDuration;
 
         Vector3 origin = dice.transform.position;
         Vector3 destiny = transform.position;
@@ -127,7 +127,7 @@ public class DiceThrower : MonoBehaviour
         }
 
         dice.selectableState = SelectableState.Transitioning;
-        float duration = selectAnimationSpeed;
+        float duration = selectAnimationDuration;
 
         Vector3 origin = transform.position;
         Vector3 destiny = diceUnselectionOrigin.position;
