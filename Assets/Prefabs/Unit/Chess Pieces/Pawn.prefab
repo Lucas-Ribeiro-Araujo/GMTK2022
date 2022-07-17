@@ -14,6 +14,11 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: e8e1f580bb677264d87f8c5d1c374271, type: 2}
     - target: {fileID: 1125350068027664126, guid: b4794b76677c55046b89d983f0b0b321,
         type: 3}
+      propertyPath: maxHp
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1125350068027664126, guid: b4794b76677c55046b89d983f0b0b321,
+        type: 3}
       propertyPath: TimeBetweemJumps
       value: 1.7
       objectReference: {fileID: 0}
