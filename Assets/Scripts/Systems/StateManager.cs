@@ -12,8 +12,10 @@ public class StateManager : IManager
     public int waveNumber = 0;
     public int score = 0;
 
+    [SerializeField]
     AudioClip startClip;
-    AudioClip endClip;
+    [SerializeField]
+    AudioClip[] endClip;
 
     EventHandler playEvent;
     EventHandler resetEvent;
@@ -39,8 +41,9 @@ public class StateManager : IManager
 
     void DeadState(object sender, OnDeathArgs args)
     {
+
         gameState = GameState.Dead;
-        resetEvent = GameManager.Instance.audioManager.PlayDialogClip(endClip);
+        resetEvent = GameManager.Instance.audioManager.PlayDialogClip(endClip[0]);
         resetEvent += ResetScene;
     }
 

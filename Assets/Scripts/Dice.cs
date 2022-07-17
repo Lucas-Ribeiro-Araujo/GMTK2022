@@ -40,7 +40,7 @@ public class Dice : MonoBehaviour, IClickable
         {
             bool isUp = Utils.DirectionEquals(Vector3.up, transform.up, .98f);
 
-            if (rb.velocity.magnitude < .01f && rb.angularVelocity.magnitude < .01f /*&& isUp*/)
+            if (rb.velocity.magnitude < .01f && rb.angularVelocity.magnitude < .01f && isUp)
             {
                 diceStationaryTimer += Time.deltaTime;
 

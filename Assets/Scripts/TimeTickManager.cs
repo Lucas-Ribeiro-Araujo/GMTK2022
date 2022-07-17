@@ -6,7 +6,7 @@ public class TimeTickManager : IManager
 {
     public event EventHandler<OnTickEventArgs> OnTick;
 
-    public float tickInterval = 2f;
+    public float tickInterval = 5f;
     public int tick = 0;
 
     float timer = 0f;
