@@ -34,8 +34,9 @@ public class AudioManager : MonoBehaviour
         musicSource.clip = clip;
     }
 
-    public void PlayDialogClip(AudioClip clip)
+    public EventHandler PlayDialogClip(AudioClip clip)
     {
         dialogSource.PlayOneShot(clip);
+        return OnDialogEnd;
     }
 }
