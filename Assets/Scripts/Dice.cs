@@ -6,11 +6,12 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class Dice : MonoBehaviour, IClickable
 {
-
+    
     public event EventHandler<OnCollisionArgs> OnDiceCollision;
     public event EventHandler OnDiceMaxRoll;
 
     public DiceState state = DiceState.Selectable;
+    public DiceType diceType;
 
     public float diceStationaryDelay = 1f;
     float diceStationaryTimer = 0f;
@@ -139,3 +140,4 @@ public class Dice : MonoBehaviour, IClickable
 }
 
 public enum DiceState { Selectable, Thrown, Transitioning, Inactive }
+public enum DiceType { D4, D6, D20}

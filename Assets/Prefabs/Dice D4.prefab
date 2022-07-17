@@ -32,6 +32,11 @@ PrefabInstance:
       propertyPath: m_Extents.z
       value: 0.013
       objectReference: {fileID: 0}
+    - target: {fileID: -5775345615218159649, guid: d779cc10338876b499d9e6cc040921fc,
+        type: 3}
+      propertyPath: diceType
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -4117655353178137081, guid: d779cc10338876b499d9e6cc040921fc,
         type: 3}
       propertyPath: m_Mesh

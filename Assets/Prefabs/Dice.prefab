@@ -147,7 +147,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad522d7af1a67834f8484bd0c607d992, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectableState: 0
+  state: 0
+  diceType: 1
+  diceStationaryDelay: 1
 --- !u!114 &4194273869205735374
 MonoBehaviour:
   m_ObjectHideFlags: 0
