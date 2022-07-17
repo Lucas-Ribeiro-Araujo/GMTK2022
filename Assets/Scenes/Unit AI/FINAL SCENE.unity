@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.57897896, g: 0.5479502, b: 0.52005625, a: 1}
+  m_IndirectSpecularColor: {r: 0.61569524, g: 0.5983655, b: 0.58253807, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -893,7 +893,6 @@ MonoBehaviour:
   - {fileID: 2583172251054893474, guid: b142835585258754c93342dc6f857a63, type: 3}
   - {fileID: 2125855621873686491, guid: a62722f28928eac49b721cc409642c37, type: 3}
   maxDiceOnBox: 8
-  maxDiceOnTable: 10
   randomDirectionAmount: 0.5
 --- !u!4 &1566094355
 Transform:
@@ -1323,6 +1322,21 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3369609254656652391, guid: 5dd775459e47cc9438df3db8b3400a56,
         type: 3}
+      propertyPath: stateManager.winClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 630ff4aac5a858b478762c8f744d959b, type: 3}
+    - target: {fileID: 3369609254656652391, guid: 5dd775459e47cc9438df3db8b3400a56,
+        type: 3}
+      propertyPath: stateManager.startClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 7df23b520c8952246bf4470eb2368a46, type: 3}
+    - target: {fileID: 3369609254656652391, guid: 5dd775459e47cc9438df3db8b3400a56,
+        type: 3}
+      propertyPath: timeTickManager.tickInterval
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3369609254656652391, guid: 5dd775459e47cc9438df3db8b3400a56,
+        type: 3}
       propertyPath: hpManager.Cards.Array.data[0]
       value: 
       objectReference: {fileID: 9174233916424358392}
@@ -1353,8 +1367,33 @@ PrefabInstance:
       objectReference: {fileID: 958623438}
     - target: {fileID: 3369609254656652391, guid: 5dd775459e47cc9438df3db8b3400a56,
         type: 3}
+      propertyPath: stateManager.endClip.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3369609254656652391, guid: 5dd775459e47cc9438df3db8b3400a56,
+        type: 3}
       propertyPath: spawnerManager.spawners.Array.size
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3369609254656652391, guid: 5dd775459e47cc9438df3db8b3400a56,
+        type: 3}
+      propertyPath: stateManager.endClip.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 49f250e7545e7d542a581c682bef007b, type: 3}
+    - target: {fileID: 3369609254656652391, guid: 5dd775459e47cc9438df3db8b3400a56,
+        type: 3}
+      propertyPath: stateManager.endClip.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 85439941ceb362344ac65b4cc907378e, type: 3}
+    - target: {fileID: 3369609254656652391, guid: 5dd775459e47cc9438df3db8b3400a56,
+        type: 3}
+      propertyPath: stateManager.endClip.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: 044f48b5b7c140b4e8ebf223f0b75262, type: 3}
+    - target: {fileID: 3369609254656652391, guid: 5dd775459e47cc9438df3db8b3400a56,
+        type: 3}
+      propertyPath: stateManager.dialogClips.Array.size
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 3369609254656652391, guid: 5dd775459e47cc9438df3db8b3400a56,
         type: 3}
@@ -1381,6 +1420,61 @@ PrefabInstance:
       propertyPath: spawnerManager.spawners.Array.data[4]
       value: 
       objectReference: {fileID: 1368509188}
+    - target: {fileID: 3369609254656652391, guid: 5dd775459e47cc9438df3db8b3400a56,
+        type: 3}
+      propertyPath: stateManager.dialogClips.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 8ffeeaa5d514c6c4994e45cc7fd0f646, type: 3}
+    - target: {fileID: 3369609254656652391, guid: 5dd775459e47cc9438df3db8b3400a56,
+        type: 3}
+      propertyPath: stateManager.dialogClips.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 8e71720f708845c4e9577a35ff8f1f1e, type: 3}
+    - target: {fileID: 3369609254656652391, guid: 5dd775459e47cc9438df3db8b3400a56,
+        type: 3}
+      propertyPath: stateManager.dialogClips.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: 188c0db40ba50ed4e99175f7d48b4a37, type: 3}
+    - target: {fileID: 3369609254656652391, guid: 5dd775459e47cc9438df3db8b3400a56,
+        type: 3}
+      propertyPath: stateManager.dialogClips.Array.data[3]
+      value: 
+      objectReference: {fileID: 8300000, guid: 09666a88c852ab14786ec620d0f71467, type: 3}
+    - target: {fileID: 3369609254656652391, guid: 5dd775459e47cc9438df3db8b3400a56,
+        type: 3}
+      propertyPath: stateManager.dialogClips.Array.data[4]
+      value: 
+      objectReference: {fileID: 8300000, guid: 3f7fa313ad1f65544bc3b03e3ce58bc7, type: 3}
+    - target: {fileID: 3369609254656652391, guid: 5dd775459e47cc9438df3db8b3400a56,
+        type: 3}
+      propertyPath: stateManager.dialogClips.Array.data[5]
+      value: 
+      objectReference: {fileID: 8300000, guid: 1772b19080e5fe34c914a1f015c20bb8, type: 3}
+    - target: {fileID: 3369609254656652391, guid: 5dd775459e47cc9438df3db8b3400a56,
+        type: 3}
+      propertyPath: stateManager.dialogClips.Array.data[6]
+      value: 
+      objectReference: {fileID: 8300000, guid: 32fc9facc452c114ca58a39c188ad894, type: 3}
+    - target: {fileID: 3369609254656652391, guid: 5dd775459e47cc9438df3db8b3400a56,
+        type: 3}
+      propertyPath: stateManager.dialogClips.Array.data[7]
+      value: 
+      objectReference: {fileID: 8300000, guid: f01d5df4254f11f4a920bf78956de45e, type: 3}
+    - target: {fileID: 3369609254656652391, guid: 5dd775459e47cc9438df3db8b3400a56,
+        type: 3}
+      propertyPath: stateManager.dialogClips.Array.data[8]
+      value: 
+      objectReference: {fileID: 8300000, guid: b5570458f105f2945a5598c6f6b2a33a, type: 3}
+    - target: {fileID: 3369609254656652391, guid: 5dd775459e47cc9438df3db8b3400a56,
+        type: 3}
+      propertyPath: stateManager.dialogClips.Array.data[9]
+      value: 
+      objectReference: {fileID: 8300000, guid: 1c98cf5e00c023c48b9d11645c159b26, type: 3}
+    - target: {fileID: 3369609254656652391, guid: 5dd775459e47cc9438df3db8b3400a56,
+        type: 3}
+      propertyPath: stateManager.dialogClips.Array.data[10]
+      value: 
+      objectReference: {fileID: 8300000, guid: 1306a2a39afa4be408b139a540419921, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5dd775459e47cc9438df3db8b3400a56, type: 3}
 --- !u!114 &3437311722682258349

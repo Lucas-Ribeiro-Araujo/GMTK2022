@@ -11,8 +11,7 @@ public class DiceSpawner : MonoBehaviour
     List<GameObject> diceTypes;
     [SerializeField]
     int maxDiceOnBox = 8;
-    [SerializeField]
-    int maxDiceOnTable = 10;
+
 
     private List<Dice> dicesOnBoard = new List<Dice>();
     private List<Dice> dicesOnBox = new List<Dice>();
@@ -63,12 +62,5 @@ public class DiceSpawner : MonoBehaviour
     public void AddDiceToBoard(Dice dice)
     {
         dicesOnBox.Remove(dice);
-        dicesOnBoard.Add(dice);
-
-        if (dicesOnBoard.Count >= maxDiceOnTable)
-        {
-            dicesOnBoard[0].DestroyDice();
-            dicesOnBoard.RemoveAt(0);
-        }
     }
 }
