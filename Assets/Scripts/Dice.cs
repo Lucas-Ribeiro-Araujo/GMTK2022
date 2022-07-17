@@ -4,10 +4,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-public class Dice : MonoBehaviour
+public class Dice : MonoBehaviour, IClickable
 {
 
-    public event EventHandler<OnDiceCollisionArgs> OnDiceCollision;
+    public event EventHandler<OnCollisionArgs> OnDiceCollision;
+
+    public SelectableState selectableState = SelectableState.Selectable;
 
     Rigidbody rb;
 
@@ -28,7 +30,7 @@ public class Dice : MonoBehaviour
         List<ContactPoint> contacts = new List<ContactPoint>(collision.contacts);
         foreach (ContactPoint contact in contacts)
         {
-            OnDiceCollisionArgs args = new OnDiceCollisionArgs();
+            OnCollisionArgs args = new OnCollisionArgs();
 
             args.collisionVelocity = collision.relativeVelocity;
             args.collisionNormal = contact.normal;
@@ -57,16 +59,45 @@ public class Dice : MonoBehaviour
         if (collision.collider.tag == "Unit")
         {
             float impactPower = Vector3.Dot(collision.relativeVelocity, collision.contacts[0].normal);
-            Unit unit = collision.collider.GetComponentInParent<Unit>();
+            Unit unit = collision.collider.GetComponent<Unit>();
 
-            if (impactPower > 5)
+            if (impactPower > 5 && unit != null)
             {
                 Knockback knockback = new Knockback();
                 knockback.origin = collision.contacts[0].point;
                 knockback.force = collision.contacts[0].normal * -impactPower * 2f;
-                Debug.Log(impactPower);
                 unit.TakeDamage(Mathf.Max(impactPower, 0), knockback);
             }
         }
     }
+
+    public void EnablePhysics(bool value)
+    {
+        rb.isKinematic = !value;
+    }
+
+    public void SetVelocity(Vector3 velocity)
+    {
+        rb.velocity = velocity;
+    }
+
+    public void SetAngularVelocity(Vector3 angularVelocity)
+    {
+        rb.angularVelocity = angularVelocity;
+    }
+
+    public void OnClick()
+    {
+        
+    }
+
+    public void OnRelease()
+    {
+        if (selectableState == SelectableState.Selectable)
+        {
+            GameManager.Instance.playerEvents.diceThrower.SelectDice(this);
+        }
+    }
 }
+
+public enum SelectableState { Selectable, NotSelectable, Transitioning }

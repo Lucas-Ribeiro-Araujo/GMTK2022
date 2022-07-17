@@ -709,7 +709,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acf7ac730acef094baebb52e8bb00124, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  amountOfPoints: 20
+  amountOfPoints: 50
   lineLength: 40
   pointMovePeriod: 3
   dot: {fileID: 6661665058573197147, guid: 18d9742b7fd87c24984581884ddc0378, type: 3}
@@ -1561,23 +1561,28 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -2021178655527167927, guid: 4e913c682329662408c33964f439a8ee,
         type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -2021178655527167927, guid: 4e913c682329662408c33964f439a8ee,
+        type: 3}
       propertyPath: m_LocalPosition.y
-      value: 7.32
+      value: 5.86
       objectReference: {fileID: 0}
     - target: {fileID: -2021178655527167927, guid: 4e913c682329662408c33964f439a8ee,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 7.89
+      value: 5.67
       objectReference: {fileID: 0}
     - target: {fileID: -1853094968961178454, guid: 4e913c682329662408c33964f439a8ee,
         type: 3}
       propertyPath: field of view
-      value: 60.000004
+      value: 70.00001
       objectReference: {fileID: 0}
     - target: {fileID: -1853094968961178454, guid: 4e913c682329662408c33964f439a8ee,
         type: 3}
       propertyPath: m_FocalLength
-      value: 20.78461
+      value: 17.137775
       objectReference: {fileID: 0}
     - target: {fileID: -1406694632666744564, guid: 4e913c682329662408c33964f439a8ee,
         type: 3}

@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.Systems
 {
+    [RequireComponent(typeof(Unit))]
     public class UnitAudioManager : AudioEmitter
     {
         [SerializeField]
@@ -11,6 +12,7 @@ namespace Assets.Scripts.Systems
 
         void Start()
         {
+            unit = GetComponent<Unit>();
             unit.OnWalk += EmitSounds;
         }
 
