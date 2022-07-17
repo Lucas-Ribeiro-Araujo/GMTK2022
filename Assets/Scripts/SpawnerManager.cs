@@ -1,27 +1,47 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
-public class SpawnerManager
+[Serializable]
+public class SpawnerManager : IManager
 {
-    public GameObject[] spawner;
+    public List<WaveSpawner> spawners;
+
+    public EventHandler OnWaveStart;
 
     public void Start()
     {
-        SpawnEnemyOnSpawner();
+        GameManager.Instance.timeTickManager.OnTick += SpawnWaves;
     }
 
-    private void SpawnEnemyOnSpawner()
+    public void SpawnWaves(object sender, OnTickEventArgs args)
     {
-       
-        for (int i = 0; i < spawner.Length; i++)
+
+        bool isWaveSpawn = false;
+
+        foreach (WaveSpawner spawner in spawners)
         {
-            GameManager.Instance.timeTick.OnTick += spawner[i].GetComponent<EnemySpawner>().SpawnWave;
-            
+            foreach (Wave wave in spawner.waves)
+            {
+                if (wave.spawnOnTick == args.tick)
+                {
+                    spawner.SpawnWave(wave);
+                    isWaveSpawn = true;
+                }
+            }
         }
+
+        if (isWaveSpawn) OnWaveStart?.Invoke(this, EventArgs.Empty);
+
     }
 
-    // Update is called once per frame
     public void Update()
+    {
+        
+    }
+
+    public void Reset()
     {
         
     }

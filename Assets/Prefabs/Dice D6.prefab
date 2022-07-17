@@ -10,7 +10,7 @@ PrefabInstance:
     - target: {fileID: 248274891237030454, guid: d779cc10338876b499d9e6cc040921fc,
         type: 3}
       propertyPath: m_Name
-      value: Dice
+      value: Dice D6
       objectReference: {fileID: 0}
     - target: {fileID: 592746847926526092, guid: d779cc10338876b499d9e6cc040921fc,
         type: 3}
@@ -20,17 +20,17 @@ PrefabInstance:
     - target: {fileID: 592746847926526092, guid: d779cc10338876b499d9e6cc040921fc,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -4.833905
       objectReference: {fileID: 0}
     - target: {fileID: 592746847926526092, guid: d779cc10338876b499d9e6cc040921fc,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.10482158
       objectReference: {fileID: 0}
     - target: {fileID: 592746847926526092, guid: d779cc10338876b499d9e6cc040921fc,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -0.20823386
       objectReference: {fileID: 0}
     - target: {fileID: 592746847926526092, guid: d779cc10338876b499d9e6cc040921fc,
         type: 3}

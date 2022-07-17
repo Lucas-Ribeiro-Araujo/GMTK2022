@@ -2,42 +2,54 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
 
     public static GameManager Instance;
 
-    [SerializeField]
-    public PlayerEvents playerEvents;
-    [SerializeField]
-    public TimeTick timeTick;
-    [SerializeField]
+    public PlayerEventsManager playerEventsManager;
+    public TimeTickManager timeTickManager;
     public SpawnerManager spawnerManager;
+    public HPManager hpManager;
+    public StateManager stateManager;
+    public AudioManager audioManager;
 
-    // Start is called before the first frame update
     void Awake()
     {
         Instance = this;
-        //timeTick.Awake();
     }
 
     void Start()
     {
+        DontDestroyOnLoad(this);
         Cursor.lockState = CursorLockMode.Confined;
-        playerEvents.Start();
+        playerEventsManager.Start();
         spawnerManager.Start();
+        stateManager.Start();
     }
+
     void OnDestroy()
     {
         
     }
 
-    // Update is called once per frame
     void Update()
     {
-        playerEvents.Update();
-        timeTick.Update();
-        spawnerManager.Update();
+        playerEventsManager.Update();
+        timeTickManager.Update();
+        hpManager.Update();
+    }
+
+    public void ResetScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name, LoadSceneMode.Single);
+        playerEventsManager.Reset();
+        timeTickManager.Reset();
+        spawnerManager.Reset();
+        hpManager.Reset();
+        stateManager.Reset();
+        audioManager.Reset();
     }
 }
