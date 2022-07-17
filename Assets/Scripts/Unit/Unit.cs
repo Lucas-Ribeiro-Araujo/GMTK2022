@@ -6,6 +6,9 @@ using UnityEngine.AI;
 
 public class Unit : MonoBehaviour
 {
+
+    public static UnitTarget UnitTarget;
+
     [Header("Stats")]
     [SerializeField]
     private UnitStates state;
@@ -160,7 +163,7 @@ public class Unit : MonoBehaviour
     private void UnitMovingState()
     {
         state = UnitStates.Moving;
-        unitNavAgent.SetDestination(UnitTargetSingleton.Instance.transform.position);
+        unitNavAgent.SetDestination(UnitTarget.transform.position);
     }
 
     private void UnitAttackingState()

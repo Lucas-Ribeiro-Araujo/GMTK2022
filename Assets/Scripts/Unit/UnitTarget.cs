@@ -2,12 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UnitTargetSingleton : MonoBehaviour
+public class UnitTarget : MonoBehaviour
 {
-    public static UnitTargetSingleton Instance;
 
     private void Awake()
     {
-        Instance = this;
+        Unit.UnitTarget = this;
     }
 }
