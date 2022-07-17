@@ -30,15 +30,6 @@ public class AudioManager : MonoBehaviour, IManager
         {
             musicSource.volume -= fadeOutRate * Time.deltaTime;
         }
-
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            StopMusic();
-        }
-        if (Input.GetKeyDown(KeyCode.J))
-        {
-            StartMusic();
-        }
     }
 
     public void StartMusic()

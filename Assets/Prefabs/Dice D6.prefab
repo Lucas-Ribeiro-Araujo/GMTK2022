@@ -72,5 +72,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3222974613923404454, guid: d779cc10338876b499d9e6cc040921fc,
+        type: 3}
+      propertyPath: diceFX
+      value: 
+      objectReference: {fileID: 7478734054555539506, guid: 9a51c18d5b718c043a1075d299eb6ce2,
+        type: 3}
+    - target: {fileID: 3222974613923404454, guid: d779cc10338876b499d9e6cc040921fc,
+        type: 3}
+      propertyPath: skillRange
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3222974613923404454, guid: d779cc10338876b499d9e6cc040921fc,
+        type: 3}
+      propertyPath: skillDamage
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 3222974613923404454, guid: d779cc10338876b499d9e6cc040921fc,
+        type: 3}
+      propertyPath: skillKnockbackForce
+      value: 1000
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d779cc10338876b499d9e6cc040921fc, type: 3}

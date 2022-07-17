@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 1125350068027664115}
   - component: {fileID: 5242810320416206236}
   - component: {fileID: 2733671970247562016}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Unit
   m_TagString: Unit
   m_Icon: {fileID: 0}
@@ -67,7 +67,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: e8e1f580bb677264d87f8c5d1c374271, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -104,11 +104,10 @@ MonoBehaviour:
   state: 0
   hp: 0
   maxHp: 100
-  recoveryTimer: 1
-  ragdolTimer: 0
+  ragdollRecoveryDelay: 1
+  ragdollToleranceDelay: 0.2
   destroyDelay: 1
   TimeBetweemJumps: 2
-  jumpTimer: 0
   jumpForce: 150
   forceTowardsDestination: 150
   unitNavAgent: {fileID: 1125350068027664127}
