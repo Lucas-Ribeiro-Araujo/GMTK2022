@@ -23,6 +23,7 @@ public class Dice : MonoBehaviour, IClickable
     {
         rb = GetComponent<Rigidbody>();
         OnDiceMaxRoll += MaxRoll;
+        DiceSpawner.instance.AddDiceToList(this);
     }
 
     void OnDestroy()
@@ -39,7 +40,7 @@ public class Dice : MonoBehaviour, IClickable
         {
             bool isUp = Utils.DirectionEquals(Vector3.up, transform.up, .98f);
 
-            if (rb.velocity.magnitude < .01f && rb.angularVelocity.magnitude < .01f && isUp)
+            if (rb.velocity.magnitude < .01f && rb.angularVelocity.magnitude < .01f /*&& isUp*/)
             {
                 diceStationaryTimer += Time.deltaTime;
 
@@ -109,6 +110,11 @@ public class Dice : MonoBehaviour, IClickable
                 unit.TakeDamage(Mathf.Max(impactPower, 0), knockback);
             }
         }
+    }
+
+    public void DestroyDice()
+    {
+        Destroy(gameObject);
     }
 
     public void EnablePhysics(bool value)

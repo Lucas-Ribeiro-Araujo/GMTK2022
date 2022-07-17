@@ -89,6 +89,8 @@ public class DiceThrower : MonoBehaviour
         float range = Mathf.PI * 2;
         selectedDice.SetAngularVelocity(new Vector3(Random.Range(-range, range), Random.Range(-range, range), Random.Range(-range, range)));
 
+        DiceSpawner.instance.AddDiceToBoard(selectedDice);
+
         selectedDice = null;
 
         DiceTrajectory diceTrajectory = GetComponent<DiceTrajectory>();

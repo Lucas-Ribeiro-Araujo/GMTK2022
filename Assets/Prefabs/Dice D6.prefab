@@ -81,12 +81,12 @@ PrefabInstance:
     - target: {fileID: 3222974613923404454, guid: d779cc10338876b499d9e6cc040921fc,
         type: 3}
       propertyPath: skillRange
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3222974613923404454, guid: d779cc10338876b499d9e6cc040921fc,
         type: 3}
       propertyPath: skillDamage
-      value: 50
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 3222974613923404454, guid: d779cc10338876b499d9e6cc040921fc,
         type: 3}

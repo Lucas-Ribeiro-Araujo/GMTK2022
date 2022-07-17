@@ -8,8 +8,8 @@ public class Card : MonoBehaviour
     bool destroyed;
 
     [SerializeField]
-    float dissolveRate = 1;
-    float dissolveValue = 0;
+    float dissolveRate =  1;
+    float dissolveValue = 0.2f;
 
     [SerializeField]
     CardSound soundManager;
@@ -31,9 +31,8 @@ public class Card : MonoBehaviour
             material.SetFloat("_Death", dissolveValue);
             if (dissolveValue > 1)
             {
-                dissolveValue = 0;
+                dissolveValue = 0.2f;
                 destroyed = false;
-
                 gameObject.SetActive(false);
             }
         }

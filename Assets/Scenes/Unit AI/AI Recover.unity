@@ -1281,6 +1281,8 @@ MonoBehaviour:
   - {fileID: 4544824217035884527, guid: 44ec89cd266076a4b994427ea69acdbc, type: 3}
   - {fileID: 2583172251054893474, guid: b142835585258754c93342dc6f857a63, type: 3}
   - {fileID: 2125855621873686491, guid: a62722f28928eac49b721cc409642c37, type: 3}
+  maxDiceOnBox: 8
+  maxDiceOnTable: 16
   randomDirectionAmount: 0.5
 --- !u!4 &1566094355
 Transform:

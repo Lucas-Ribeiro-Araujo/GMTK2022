@@ -256,10 +256,10 @@ public class Unit : MonoBehaviour
         else
         {
             UnitRagdollState();
-            unitRigidbody.angularVelocity = Vector3.zero;
-            unitRigidbody.velocity = Vector3.zero;
-            unitRigidbody.AddForceAtPosition(knockback.force, knockback.origin);
         }
+        unitRigidbody.angularVelocity = Vector3.zero;
+        unitRigidbody.velocity = Vector3.zero;
+        unitRigidbody.AddForceAtPosition(knockback.force, knockback.origin);
     }
 
     private IEnumerator DieAfterTime(float time)

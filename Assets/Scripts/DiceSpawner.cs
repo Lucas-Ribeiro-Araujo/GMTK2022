@@ -4,12 +4,26 @@ using UnityEngine;
 
 public class DiceSpawner : MonoBehaviour
 {
+    public static DiceSpawner instance;
+
 
     [SerializeField]
     List<GameObject> diceTypes;
+    [SerializeField]
+    int maxDiceOnBox = 8;
+    [SerializeField]
+    int maxDiceOnTable = 10;
+
+    private List<Dice> dicesOnBoard = new List<Dice>();
+    private List<Dice> dicesOnBox = new List<Dice>();
 
     [Min(0f)]
     public float randomDirectionAmount;
+
+    private void Awake()
+    {
+        instance = this;
+    }
 
     void Start()
     {
@@ -23,6 +37,11 @@ public class DiceSpawner : MonoBehaviour
 
     void SpawnDice(object sender, OnTickEventArgs args)
     {
+        if(dicesOnBox.Count >= maxDiceOnBox)
+        {
+            return;
+        }
+
         GameObject diceType = diceTypes[Random.Range(0, diceTypes.Count)];
         GameObject dice = Instantiate(diceType, transform.position, Quaternion.identity);
 
@@ -35,5 +54,21 @@ public class DiceSpawner : MonoBehaviour
 
         range = Mathf.PI * 2;
         rb.angularVelocity = new Vector3(Random.Range(-range, range), Random.Range(-range, range), Random.Range(-range, range));
+    }
+
+    public void AddDiceToList(Dice dice)
+    {
+        dicesOnBox.Add(dice);
+    }
+    public void AddDiceToBoard(Dice dice)
+    {
+        dicesOnBox.Remove(dice);
+        dicesOnBoard.Add(dice);
+
+        if (dicesOnBoard.Count >= maxDiceOnTable)
+        {
+            dicesOnBoard[0].DestroyDice();
+            dicesOnBoard.RemoveAt(0);
+        }
     }
 }

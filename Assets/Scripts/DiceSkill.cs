@@ -42,7 +42,7 @@ namespace Assets.Scripts
                 {
                     Knockback knockback = new Knockback();
                     knockback.origin = transform.position;
-                    knockback.force =  (transform.position - unit.transform.position).normalized * skillKnockbackForce;
+                    knockback.force =  ( unit.transform.position - transform.position).normalized * skillKnockbackForce;
                     unit.TakeDamage(skillDamage, knockback);
                 }
             }
@@ -64,7 +64,7 @@ namespace Assets.Scripts
         private void OnDrawGizmos()
         {
             Gizmos.color = Color.red;
-            Gizmos.DrawSphere(transform.position, skillRange);
+            Gizmos.DrawWireSphere(transform.position, skillRange);
         }
     }
 }
