@@ -106,7 +106,8 @@ MonoBehaviour:
   maxHp: 100
   ragdollRecoveryDelay: 1
   ragdollToleranceDelay: 0.2
-  destroyDelay: 1
+  destroyDelay: 0.25
+  damageBlinkDecrease: 0.85
   TimeBetweemJumps: 2
   jumpForce: 150
   forceTowardsDestination: 150

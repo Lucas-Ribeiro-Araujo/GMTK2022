@@ -14,6 +14,8 @@ public class HPManager : IManager
 
     public event EventHandler<OnDeathArgs> OnDeath;
 
+    private int currentCard = 0;
+
     public void Update()
     {
         if (Input.GetKeyDown(KeyCode.D))
@@ -26,16 +28,17 @@ public class HPManager : IManager
     {
         if(EnabledCardsCount() > 0)
         {
-            OnDamageTaken += Cards[Cards.Count - 1].OnTakeDamage;
+            OnDamageTaken += Cards[currentCard].OnTakeDamage;
             OnDamageTaken?.Invoke(this, EventArgs.Empty);
-            OnDamageTaken -= Cards[Cards.Count - 1].OnTakeDamage;
+            OnDamageTaken -= Cards[currentCard].OnTakeDamage;
+            currentCard++;
         }
         else
         {
             OnDeathArgs args = new OnDeathArgs();
             args.waveReached = GameManager.Instance.stateManager.waveNumber;
             args.score = GameManager.Instance.stateManager.score;
-
+            Debug.Log("GameOVer");
             OnDeath?.Invoke(this, args);
         }
     }
@@ -57,6 +60,8 @@ public class HPManager : IManager
 
     public void Reset()
     {
+        currentCard = 0;
+
         foreach (Card card in Cards)
         {
             card.gameObject.SetActive(true);
