@@ -25,18 +25,26 @@ public class Unit : MonoBehaviour
 
     [Header("Options")]
     [SerializeField]
-    private float slerpTime = .5f;
-    [SerializeField]
     private float recoveryTimer = 1;
     [SerializeField]
+    private float ragdolTimer;
+    [SerializeField]
     private float destroyDelay = 1;
+
+    [SerializeField]
+    private float TimeBetweemJumps;
+    private float TimeBetweemJumpsCounter = 2;
+    [SerializeField]
+    private float jumpTimer;
+    [SerializeField]
+    private float jumpForce;
+    [SerializeField]
+    private float forceTowardsDestination;
+
 
     [Header("References")]
     [SerializeField]
     private NavMeshAgent unitNavAgent;
-
-    [SerializeField]
-    private Animator unitAnimator;
 
     [SerializeField]
     private Rigidbody unitRigidbody;
@@ -46,21 +54,27 @@ public class Unit : MonoBehaviour
     [SerializeField]
     private Collider unitCollider;
 
-    [SerializeField]
-    private float ragdolTimer;
+
     private Vector3 recoveryPoint;
 
-    public EventHandler<EventArgs> OnWalk;
+
 
     private void Start()
     {
         UnitRagdollState();
 
         hp = maxHp;
-        unitNavAgent.speed = moveSpeed;
-        unitNavAgent.acceleration = acceleration;
+        currentPath = new NavMeshPath();
+
+        unitNavAgent.updatePosition = false;
+        unitNavAgent.updateRotation = false;
+        unitNavAgent.updateUpAxis = false;
 
     }
+
+    public EventHandler<EventArgs> OnWalk;
+    NavMeshPath currentPath;
+    int currentPathIndex = 1;
 
     private void FixedUpdate()
     {
@@ -74,37 +88,38 @@ public class Unit : MonoBehaviour
                         if (ragdolTimer >= recoveryTimer)
                         {
                             ragdolTimer = 0;
-                            UnitGettingUpState();
+                            UnitMovingState();
                         }
                     }
                     break;
                 }
-            case UnitStates.GettingUp:
-                {
-                    unitMeshTransform.localPosition = Vector3.Slerp(unitMeshTransform.localPosition,
-                        new Vector3(unitMeshTransform.localPosition.x, recoveryPoint.y + .2f, unitMeshTransform.localPosition.z), slerpTime);
-                    unitMeshTransform.localRotation = Quaternion.Slerp(unitMeshTransform.localRotation, Quaternion.identity, slerpTime);
-
-
-                    if (RotationEquals(unitMeshTransform.localRotation, Quaternion.identity))
-                        UnitMovingState();
-
-                    break;
-                }
             case UnitStates.Moving:
                 {
-                    if (Vector3.Distance(transform.position, UnitTargetSingleton.Instance.transform.position) < 1f)
+                    if (currentPath != null)
                     {
-                        UnitAttackingState();
+                        jumpTimer += Time.fixedDeltaTime;
+                        if (jumpTimer > TimeBetweemJumpsCounter)
+                        {
+                            TimeBetweemJumpsCounter += TimeBetweemJumps;
+
+
+                            //unitNavAgent.nextPosition = currentPath.corners[currentPathIndex];
+                            if (Vector3.Distance(transform.position, unitNavAgent.nextPosition) < 2 && )
+                            {
+
+                                currentPathIndex++;
+                                unitNavAgent.nextPosition = currentPath.corners[currentPathIndex];
+                            }
+
+                            unitRigidbody.AddForce(Vector3.up * jumpForce);
+                            unitRigidbody.AddForce((currentPath.corners[currentPathIndex] - transform.position).normalized * forceTowardsDestination);
+                        }
                     }
                     break;
                 }
             case UnitStates.Attacking:
                 {
-                    if (unitAnimator.GetCurrentAnimatorStateInfo(0).IsName("Dead"))
-                    {
-                        UnitDeadState();
-                    }
+                    UnitDeadState();
                     break;
                 }
         }
@@ -126,47 +141,25 @@ public class Unit : MonoBehaviour
 
     private void UnitRagdollState()
     {
+        unitNavAgent.CalculatePath(UnitTargetSingleton.Instance.transform.position, currentPath);
         state = UnitStates.Ragdolling;
-        unitAnimator.SetBool("Moving", false);
-        unitNavAgent.enabled = false;
-        unitRigidbody.isKinematic = false;
-    }
-
-    private void UnitGettingUpState()
-    {
-        RaycastHit hit;
-        Physics.Raycast(transform.position, Vector3.down, out hit);
-        recoveryPoint = hit.point + unitCollider.bounds.extents;
-
-        state = UnitStates.GettingUp;
-        unitNavAgent.enabled = false;
-        unitRigidbody.isKinematic = true;
     }
 
     private void UnitMovingState()
     {
         state = UnitStates.Moving;
-        unitRigidbody.isKinematic = true;
-        unitNavAgent.enabled = true;
-        unitNavAgent.SetDestination(UnitTargetSingleton.Instance.transform.position);
-        unitAnimator.SetBool("Moving", true);
+        unitNavAgent.CalculatePath(UnitTargetSingleton.Instance.transform.position, currentPath);
+        unitNavAgent.nextPosition = currentPath.corners[1];
     }
 
     private void UnitAttackingState()
     {
         state = UnitStates.Attacking;
-        unitNavAgent.enabled = false;
-        unitRigidbody.isKinematic = true;
-        unitCollider.enabled = false;
-        unitAnimator.SetTrigger("Attack");
     }
 
     private void UnitDeadState()
     {
         state = UnitStates.Dead;
-        unitNavAgent.enabled = false;
-        unitRigidbody.isKinematic = true;
-        unitCollider.enabled = false;
         StartCoroutine(DieAfterTime(destroyDelay));
     }
 
@@ -200,6 +193,29 @@ public class Unit : MonoBehaviour
     {
         this.OnWalk?.Invoke(this, EventArgs.Empty);
     }
+
+    private void OnDrawGizmos()
+    {
+        if (currentPath != null)
+        {
+
+            for (int i = 0; i < currentPath.corners.Length; i++)
+            {
+                Gizmos.color = Color.blue;
+                if (i > 0)
+                    Gizmos.DrawLine(currentPath.corners[i - 1], currentPath.corners[i]);
+                if (currentPathIndex == i)
+                {
+                    Gizmos.color = Color.cyan;
+                    Gizmos.DrawWireSphere(currentPath.corners[currentPathIndex], 1f);
+                }
+               
+            }
+
+        Gizmos.color = Color.red;
+        Gizmos.DrawRay(transform.position, unitNavAgent.nextPosition);
+        }
+    }
 }
 
 
@@ -207,7 +223,6 @@ public class Unit : MonoBehaviour
 public enum UnitStates
 {
     Moving,
-    GettingUp,
     Ragdolling,
     Attacking,
     Dead
