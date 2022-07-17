@@ -127,8 +127,9 @@ public class Unit : MonoBehaviour
     private void UnitRagdollState()
     {
         state = UnitStates.Ragdolling;
-        unitRigidbody.isKinematic = false;
+        unitAnimator.SetBool("Moving", false);
         unitNavAgent.enabled = false;
+        unitRigidbody.isKinematic = false;
     }
 
     private void UnitGettingUpState()
@@ -145,8 +146,8 @@ public class Unit : MonoBehaviour
     private void UnitMovingState()
     {
         state = UnitStates.Moving;
-        unitNavAgent.enabled = true;
         unitRigidbody.isKinematic = true;
+        unitNavAgent.enabled = true;
         unitNavAgent.SetDestination(UnitTargetSingleton.Instance.transform.position);
         unitAnimator.SetBool("Moving", true);
     }
