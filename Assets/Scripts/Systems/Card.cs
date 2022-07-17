@@ -11,6 +11,9 @@ public class Card : MonoBehaviour
     float dissolveRate = 1;
     float dissolveValue = 0;
 
+    [SerializeField]
+    CardSound soundManager;
+
     MeshRenderer meshRenderer;
     Material material;
 
@@ -39,6 +42,7 @@ public class Card : MonoBehaviour
     public void OnTakeDamage(object sender, EventArgs e)
     {
         destroyed = true;
+        soundManager.EmitSounds();
     }
 
 }
