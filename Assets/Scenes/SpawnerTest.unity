@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -297,8 +297,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36a957c3da446a64eb597bd9b3397969, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waves:
-  - {fileID: 11400000, guid: cc4cf4d6725d6364489dc880acae1381, type: 2}
+  waves: []
   spawnPosition: {fileID: 900997580}
 --- !u!65 &266214065
 BoxCollider:
@@ -853,7 +852,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1057920190}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 1, y: 0, z: 31.31}
+  m_LocalPosition: {x: 1, y: -1.24, z: 31.31}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -913,8 +912,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36a957c3da446a64eb597bd9b3397969, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waves:
-  - {fileID: 11400000, guid: cc4cf4d6725d6364489dc880acae1381, type: 2}
+  waves: []
   spawnPosition: {fileID: 1132754113}
 --- !u!65 &1110310586
 BoxCollider:
@@ -1266,8 +1264,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36a957c3da446a64eb597bd9b3397969, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waves:
-  - {fileID: 11400000, guid: cc4cf4d6725d6364489dc880acae1381, type: 2}
+  waves: []
   spawnPosition: {fileID: 543005037}
 --- !u!65 &1807569600
 BoxCollider:
@@ -1380,8 +1377,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36a957c3da446a64eb597bd9b3397969, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waves:
-  - {fileID: 11400000, guid: cc4cf4d6725d6364489dc880acae1381, type: 2}
+  waves: []
   spawnPosition: {fileID: 161147305}
 --- !u!65 &1991871793
 BoxCollider:
