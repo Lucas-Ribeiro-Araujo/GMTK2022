@@ -50,7 +50,7 @@ public class StateManager : IManager
 
     void StartState()
     {
-        gameState = GameState.Start;
+        gameState = GameState.Playing;
         playEvent = GameManager.Instance.audioManager.PlayDialogClip(startClip);
         playEvent += PlayingState;
     }
