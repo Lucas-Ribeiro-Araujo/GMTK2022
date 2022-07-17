@@ -146,15 +146,6 @@ public class Unit : MonoBehaviour
         }
     }
 
-    bool RotationEquals(Quaternion r1, Quaternion r2)
-    {
-        float abs = Mathf.Abs(Quaternion.Dot(r1, r2));
-        if (abs >= 0.9999f)
-            return true;
-        return false;
-    }
-
-
     private void UnitRagdollState()
     {
         state = UnitStates.Ragdolling;
