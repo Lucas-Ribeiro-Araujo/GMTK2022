@@ -8,7 +8,7 @@ public class Card : MonoBehaviour
   public void OnTakeDamage(object sender, EventArgs e)
     {
         Debug.Log("i die: " + gameObject.name);
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 
 }

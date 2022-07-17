@@ -3,18 +3,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HPManager : MonoBehaviour
+[Serializable]
+public class HPManager : IManager
 {
-    public static HPManager Instance;
 
     [SerializeField]
     List<Card> Cards = new List<Card>();
 
-    public event EventHandler damageEvent;
+    public event EventHandler OnDamageTaken;
 
-    public event EventHandler deathEvent;
+    public event EventHandler<OnDeathArgs> OnDeath;
 
-    private void Update()
+    public void Update()
     {
         if (Input.GetKeyDown(KeyCode.D))
         {
@@ -22,24 +22,44 @@ public class HPManager : MonoBehaviour
         }
     }
 
-    private void Awake()
-    {
-        Instance = this;
-    }
-
     public void TakeDamage()
     {
-        if(Cards.Count > 0)
+        if(EnabledCardsCount() > 0)
         {
-        damageEvent += Cards[Cards.Count - 1].OnTakeDamage;
-        damageEvent?.Invoke(this, EventArgs.Empty);
-        damageEvent -= Cards[Cards.Count - 1].OnTakeDamage;
-        Cards.Remove(Cards[Cards.Count - 1]);
+            OnDamageTaken += Cards[Cards.Count - 1].OnTakeDamage;
+            OnDamageTaken?.Invoke(this, EventArgs.Empty);
+            OnDamageTaken -= Cards[Cards.Count - 1].OnTakeDamage;
         }
         else
         {
-            deathEvent?.Invoke(this, EventArgs.Empty);
-            Debug.Log("I is die!");
+            OnDeathArgs args = new OnDeathArgs();
+            args.waveReached = GameManager.Instance.stateManager.waveNumber;
+            args.score = GameManager.Instance.stateManager.score;
+
+            OnDeath?.Invoke(this, args);
+        }
+    }
+
+    int EnabledCardsCount()
+    {
+        int count = 0;
+        foreach (Card card in Cards)
+        {
+            if (card.gameObject.activeSelf) count++;
+        }
+        return count;
+    }
+
+    public void Start()
+    {
+        
+    }
+
+    public void Reset()
+    {
+        foreach (Card card in Cards)
+        {
+            card.gameObject.SetActive(true);
         }
     }
 }

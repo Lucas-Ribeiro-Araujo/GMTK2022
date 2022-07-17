@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AudioManager : MonoBehaviour
+public class AudioManager : MonoBehaviour, IManager
 {
     [SerializeField]
     AudioSource musicSource;
@@ -15,7 +15,7 @@ public class AudioManager : MonoBehaviour
 
     private event EventHandler OnDialogEnd;
 
-    private void Update()
+    public void Update()
     {
         if(dialogSource.clip != null)
         {
@@ -59,5 +59,15 @@ public class AudioManager : MonoBehaviour
     {
         dialogSource.PlayOneShot(clip);
         return OnDialogEnd;
+    }
+
+    public void Start()
+    {
+        
+    }
+
+    public void Reset()
+    {
+        
     }
 }

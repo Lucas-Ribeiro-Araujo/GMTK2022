@@ -95,7 +95,7 @@ public class Dice : MonoBehaviour, IClickable
     {
         if (selectableState == SelectableState.Selectable)
         {
-            GameManager.Instance.playerEvents.diceThrower.SelectDice(this);
+            GameManager.Instance.playerEventsManager.diceThrower.SelectDice(this);
         }
     }
 }
