@@ -15,5 +15,5 @@ MonoBehaviour:
   enemies:
   - {fileID: 1388961465769212084, guid: 16d815433e628cc4e8a7bdcf54396fd8, type: 3}
   - {fileID: 1388961465769212084, guid: 16d815433e628cc4e8a7bdcf54396fd8, type: 3}
-  spawnOnTick: 20
+  spawnOnTick: 17
   intervalBeetweenSpawn: 4

@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemies:
   - {fileID: 1388961465769212084, guid: 1490d9655e64a1d4bb731ca5a80923c7, type: 3}
-  spawnOnTick: 25
+  spawnOnTick: 22
   intervalBeetweenSpawn: 4

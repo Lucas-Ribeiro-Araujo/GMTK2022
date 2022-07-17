@@ -10,11 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 28daddb322bb9124fbf72111f8526494, type: 3}
-  m_Name: ChessWave3
+  m_Name: HellopolyWave2
   m_EditorClassIdentifier: 
   enemies:
-  - {fileID: 1388961465769212084, guid: 021d62cf189572a46ba0ef53515383f2, type: 3}
-  - {fileID: 1388961465769212084, guid: 021d62cf189572a46ba0ef53515383f2, type: 3}
-  - {fileID: 1388961465769212084, guid: 021d62cf189572a46ba0ef53515383f2, type: 3}
-  spawnOnTick: 11
-  intervalBeetweenSpawn: 5
+  - {fileID: 2343410160559137291, guid: 622b5ff9c6568dc448c137635fda5a1d, type: 3}
+  - {fileID: 2343410160559137291, guid: 622b5ff9c6568dc448c137635fda5a1d, type: 3}
+  spawnOnTick: 33
+  intervalBeetweenSpawn: 4
